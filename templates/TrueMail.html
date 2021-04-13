@@ -1,0 +1,151 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+<body class="colorBG">
+    <main role="main" class="colorBG">
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+            <img class="mr-3 Trans" src="/static/Photo/TINGICon.png" alt="" width="70" height="70">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100 TingText Font-Nerko-One">TING</h6>
+                <small>Живет с 2020</small>
+            </div>
+        </div>
+        <script>
+            function D(el){
+                b = el.value
+                console.log(b)
+                ColorBlock.style.background = '#'+b
+            }
+        </script>
+        <style>
+            .pPP{
+                margin-top: 25px;
+            }
+            .modal-contentSS {
+                background-color: #333333;
+                margin: 0% auto 0% auto;
+                border: 1px solid #464646;
+                width: 50%;
+            }
+            .BUTREPSS {
+                font-size: calc(.5em + 1vw);
+                display: inline-block;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: #171717;
+                border: 1px solid transparent;
+                
+                padding: .375rem .75rem;
+                margin-right: 5%; 
+                line-height: 1.5;
+                border-radius: .25rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 3%;
+            }
+            .BUTREPSSS {
+                font-size: calc(.5em + 1vw);
+                display: inline-block;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: #171717;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 3%;
+            }
+            .BUTREPSSS:hover, .BUTREPSS:hover{
+                text-decoration: none;
+                color: #01F9B6;
+                border-color: #01F9B6;
+              }
+        </style>
+        <div class="my-3 p-3 shadow-sm colorBG">
+            {% if TeT == False%}
+                <p class="redC SizeTextBig">Не шали</p>
+                <form id="LoginModals" class="modal-contentSS animate" action="/ConnectMail" method="POST" enctype="multipart/form-data">
+                    <div class="imgcontainer">
+                        <h1 class="orangeC SizeTextBig">Подтвержение mail</h1>
+                    </div>
+                    
+                    <div class="Formers MCOLOR">
+                        <h5 for="exampleInputEmail1" style="width: 80%; text-align: center; margin: 0 auto;">Пожалуйста, введите свой адрес электронной почты или login для поиска вашей учетной записи.</h5>
+                        <div style="text-align: center; margin-top: 20px;" class="row">
+                            <h1 style="padding-right: 1%; margin-left: auto;" class="noselect">#</h1>  
+                            <input type="text" style ='width: 40%;' oninput="D(this)" class="form-control formers" id="MailCodeIn" name="MailCodeIn" placeholder="Код из письма" required>
+                            <div id ='ColorBlock' style="height: 54px; margin-left: 9px; width: 54px; border-radius: 20%;background: #5151510a; margin-right: auto;"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="BUTREPSSS" type="submit">Проверить</button>
+                        <a href="/" class="BUTREPSS" type="submit">Вернуться</a>
+                    </div>
+                </form>
+            {% elif TeT == ''%}
+                <form id="LoginModals" class="modal-contentSS animate" action="/ConnectMail" method="POST" enctype="multipart/form-data">
+                    <div class="imgcontainer">
+                        <h1 class="orangeC SizeTextBig">Подтвержение mail</h1>
+                    </div>
+                    
+                    <div class="Formers MCOLOR">
+                        <div class="form-group">
+                            <h5 for="exampleInputEmail1" style="width: 80%; text-align: center; margin: 0 auto;">Пожалуйста, введите свой адрес электронной почты или login для поиска вашей учетной записи.</h5>
+                            <div style="text-align: center; margin-top: 20px;" class="row">
+                                <h1 style="padding-right: 1%; margin-left: auto;" class="noselect">#</h1>  
+                                <input type="text" style ='width: 40%;' oninput="D(this)" class="form-control formers" id="MailCodeIn" name="MailCodeIn" placeholder="Код из письма" required>
+                                <div id ='ColorBlock' style="height: 54px; margin-left: 9px; width: 54px; border-radius: 20%;background: #5151510a; margin-right: auto;"></div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <button class="BUTREPSSS" type="submit">Найти</button>
+                        <a href="/" class="BUTREPSS" type="submit">Вернуться</a>
+                    </div>
+                </form>
+            {%  elif TeT == True%}
+            <div style="text-align: center; margin-left: 20%; margin-right: 20% ;">
+                <div class="imgcontainer">
+                    <p class="GreanC SizeTextBig">Подтверждено</p>
+                </div>
+            
+                <p class="mainColor SizeTextBig">вы зарегестрированы и получили {{AS[3]}} руб</p>
+                <div style="text-align: center;">
+                    <a href="/" class="BUTREPSSS" type="submit">Продолжить</a>
+                </div>
+            </div>
+            {%endif%}
+
+        </div>
+    
+
+    </main>   
+
+</body>
+</html>
+
+
+{% endblock %}

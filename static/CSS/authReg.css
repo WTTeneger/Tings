@@ -1,0 +1,177 @@
+:root {
+    --main-color-bb: #9BC53D
+}
+
+.rg-5 {
+    padding-bottom: 15px;
+}
+
+.cg-5 {
+    column-gap: 5px;
+}
+
+.cg-1 {
+    column-gap: 1px;
+}
+
+
+/* Текст в форме */
+
+.inputsSelect option {
+    padding-left: 0px;
+    overflow: auto;
+    font-size: 25px;
+}
+
+.inputsR {
+    height: calc(1.4rem + 1vw);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    padding-right: 15px;
+    font-weight: bold;
+    width: 100%;
+    /* Rectangle 7 */
+    background: #464646;
+    border: 2px solid #6F6F6F;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #b8b8b8;
+    height: 100vw;
+    min-height: 20px;
+    max-height: 50px;
+    margin-bottom: .4em;
+    font-size: calc(0.6rem + 6 * (100vw - 320px) / 880);
+    transition: .2s;
+}
+
+@media (max-width: 400px) {
+    .inputsR {
+        padding-left: 5px;
+    }
+}
+
+.inputsR:focus {
+    box-shadow: inset 0px 0 20px 7px rgb(56 56 56);
+    /* box-shadow: 0px 11px 21px 0 #060606; */
+}
+
+.inputsR::placeholder {
+    color: #BDB8B8;
+}
+
+.textLL {
+    text-align: left;
+    padding: 4px;
+    color: #B1B1B1;
+}
+
+.textLL h2 {
+    font-size: calc(16px + 6 * ((100vw - 120px) / 1680));
+}
+
+.textf {
+    text-align: left;
+    padding: 10px 5px 1rem 10px;
+}
+
+h1,
+h2 {
+    margin: 0;
+}
+
+.textf h1 {
+    font-size: calc(16px + 6 * ((100vw + 320px) / 380));
+    color: white;
+}
+
+.textf h2 {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+    color: #888888;
+}
+
+
+/* Основа */
+
+.XKey {
+    top: 0.4em;
+    right: 0.7em;
+    position: absolute;
+}
+
+.XKey a {
+    font-size: calc(16px + 6 * ((100vw + 320px) / 480));
+    margin: 0;
+    transition: .5s;
+    cursor: pointer;
+}
+
+.XKey:hover a {
+    transform: rotate(180deg);
+}
+
+.regblock {
+    width: 100%;
+    height: 100vh;
+    background-color: #3a3a3acc;
+    position: absolute;
+    margin: 0 auto;
+}
+
+.regpanel {
+    margin: 0 auto;
+    max-width: 1000px;
+    padding: 30px;
+}
+
+.regpanel_2 {
+    position: relative;
+    padding: 10px 20px 10px;
+    background-color: #2D2D2D;
+}
+
+.one_el_line {
+    -ms-flex-positive: 1;
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.el_in_line {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: justify;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    display: -webkit-flex;
+    -webkit-align-items: center;
+    -webkit-justify-content: space-between;
+    -webkit-flex-direction: row;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.el_line {
+    display: inline-block;
+    width: 100%;
+    -ms-flex-item-align: start;
+    align-self: start;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+}
+
+.el_line_s {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    max-width: 100%;
+}
+
+.label_div {
+    padding-bottom: 2px;
+}

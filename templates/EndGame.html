@@ -1,0 +1,86 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+<style>
+  .ButtonFalse{
+    box-shadow: 0 0 20px 15px #b63939;
+    
+
+  }
+  .ButtonTrue{
+    box-shadow: 0 0 20px 15px #3ab53d66;
+  }
+
+  .ButtonBr{
+      grid-gap: 30px;
+      grid-template-columns: repeat(2,1fr);
+      position: relative;
+      display: grid;
+  }
+  .ButtomGame {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border-radius: .75rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #ffffff;
+    background: #333333;
+    border-color: #01f9b798;
+  }
+  .ButtomGame:hover{
+    background: #161616;
+  }
+  .PBar{
+    width: 100%;
+    background: bottom;
+  }
+
+</style>
+
+<script>
+  function MainW(){
+    document.location.href = "/";
+  }
+</script>
+</head>
+  <body id = 'MainBodyBlock' class="colorBG">
+    <main class="colorBG" role="main">
+      <div style="text-align: center;">
+        <samp class="CVFont mainColor SizeTextBig">{{GameID[0]}}</samp>
+        <p class="SizeTextMedium MutedText">{{GameID[1]}}</p>
+      </div>
+      
+      <div style="padding-left: 15%; padding-right: 15%;">
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar bg-info" role="progressbar" style="width: {{Procs}}%; font-weight: bold;">{{Proc}}</div>
+        </div>
+      </div>
+      <div style="text-align: center; padding-left: 15%; padding-right: 15%; margin-top: 2%;">
+        <samp class="CVFont mainColor SizeTextBig">Верный ответ: {{TrueOTV}}</samp>
+        
+      </div>
+      <div style="text-align: center;">
+        <button onclick="MainW()" name = 'VR' style="padding-left: 10%; padding-right: 10%; margin-top: 10%;" class="ButtomGame SizeTextMidle">Вернуться в меню</button>
+      </div>
+    </main>
+  </body>
+{% endblock %}
+
+
+
+

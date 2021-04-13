@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/auth.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/authReg.css">
+    <script src="../static/js/jquery.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="/static/Photo/SiteIcon.png" type="image/png">
+
+    <title>TING - Авторизация</title>
+</head>
+
+
+
+
+<body class="BAuth">
+    <div class="Pupi" id='PHelper'>
+        <h1 id='PHelperText'>Подсказка</h1>
+    </div>
+    <script>
+        Timerss = 0
+
+        function StatePopup(Text) {
+            document.getElementById('PHelperText').innerHTML = Text;
+            Timerss = Date.now();
+            setTimeout(() => {
+                if (Timerss < Date.now() - 5000) {
+                    console.log(Timerss, Date.now() - 5000)
+                    document.getElementById('PHelper').style = "";
+                } else {
+                    console.log('нажал ещё раз', Timerss < Date.now() - 5000)
+                }
+            }, 5000);
+            document.getElementById('PHelper').style = "animation: PupiFrame 5s";
+
+        }
+    </script>
+    <script>
+        CountErors = 0
+
+        function CheckLogins() {
+            console.log(CountErors);
+            if (CountErors >= 5) {
+                StatePopup('Много попыток, повторите позже')
+                return (false)
+            }
+            let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/account/check";
+            let loginw = document.getElementById('loginTing').value
+            let passw = document.getElementById('passwordTing').value
+            let textS = [loginw, passw];
+            ret = ''
+            $.ajax({
+                type: "POST",
+                url: urls,
+
+                data: {
+                    'login': textS[0],
+                    'password': textS[1],
+                    'timeN': Date.now()
+                },
+                async: false,
+                success: function(data) {
+                    console.log('return --  ', data);
+                    ret = data
+                    if (data != 'None') {
+                        console.log(ret['ErrorL']);
+                        if (ret['status'] != false) {
+                            if (ret['ErrorL'] == true) {
+                                console.log('ErrorL');
+                                console.log(document.getElementById('groupLogin'));
+                                document.getElementById('groupLogin').getElementsByClassName('LT')[0].style = 'display: none;'
+                                document.getElementById('groupLogin').getElementsByClassName('LF')[0].style = 'display: block;'
+                            } else {
+                                document.getElementById('groupLogin').getElementsByClassName('LT')[0].style = 'display: block;'
+                                document.getElementById('groupLogin').getElementsByClassName('LF')[0].style = 'display: none;'
+                            }
+
+                            if (ret['ErrorP'] == true) {
+                                console.log('ErrorP');
+                                document.getElementById('groupPassword').getElementsByClassName('LT')[0].style = 'display: none;'
+                                document.getElementById('groupPassword').getElementsByClassName('LF')[0].style = 'display: block;'
+                            } else {
+                                document.getElementById('groupPassword').getElementsByClassName('LT')[0].style = 'display: block;'
+                                document.getElementById('groupPassword').getElementsByClassName('LF')[0].style = 'display: none;'
+                            }
+
+                            if (ret['ErrorP'] == true || ret['ErrorL'] == true) {
+                                StatePopup('Не верный логин или пароль')
+                                CountErors += 1
+                            } else {
+                                document.location.href = document.location.protocol + '//' + document.location.host + '/main'
+                            }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+
+    <div class="regblock">
+        <div class="regpanel">
+            <div class="regpanel_2">
+                <form>
+                    <div class="XKey">
+                        <a onclick="console.log('s')">&#10006;</a>
+                    </div>
+                    <div class="headerForm">
+                        <div class="textf">
+                            <h1>Регистрация</h1>
+                            <h2>Быстро и легко</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="el_in_line cg-5 rg-5" name='Name_Lastname'>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <input class="inputsR" name="NameTing" type="text" id='NameTing' placeholder="Имя" required>
+                            </div>
+                        </div>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <input class="inputsR" name="LastNameTing" type="text" id='LastNameTing' placeholder="Фамилия" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="el_in_line" name='email'>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <input class="inputsR" name="emailTing" type="email" id='emailTing' placeholder="Эл. адрес" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="el_in_line" name='Password'>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <input class="inputsR" name="passwordTing" type="password" id='passwordTing' placeholder="Новый пароль" required>
+                                <input class="inputsR" name="passwordTing" type="checkbox" id='passwordTing' placeholder="Новый пароль" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="textLL">
+                        <h2>Дата рождения</h2>
+                    </div>
+                    <div class="el_in_line cg-1 rg-5" name='birth_date'>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <select class="inputsR inputsSelect" size="1" form name="day[]">
+                                    <option disabled selected>День</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                    <option value="11">11</option>
+                                    <option value="12">12</option>
+                                    <option value="13">13</option>
+                                    <option value="14">14</option>
+                                    <option value="15">15</option>
+                                    <option value="16">16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                    <option value="21">21</option>
+                                    <option value="22">22</option>
+                                    <option value="23">23</option>
+                                    <option value="24">24</option>
+                                    <option value="25">25</option>
+                                    <option value="26">26</option>
+                                    <option value="27">27</option>
+                                    <option value="28">28</option>
+                                    <option value="29">29</option>
+                                    <option value="30">30</option>
+                                    <option value="31">31</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <select class="inputsR inputsSelect" size="1" form name="mounth[]">
+                                    <option disabled selected>Месяц</option>
+                                    <option value="1">Январь</option>
+                                    <option value="2">Февраль</option>
+                                    <option value="3">Март</option>
+                                    <option value="4">Апрель</option>
+                                    <option value="5">Май</option>
+                                    <option value="6">Июнь</option>
+                                    <option value="7">Июль</option>
+                                    <option value="8">Август</option>
+                                    <option value="9">Сентябрь</option>
+                                    <option value="10">Октябрь</option>
+                                    <option value="11">Ноябрь</option>
+                                    <option value="12">Декабрь</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="el_line">
+                            <div class="el_line_s">
+                                <select class="inputsR inputsSelect" size="1" form name="year[]">
+                                    <option disabled selected>Год</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                    <option value="2014">2014</option>
+                                    <option value="2013">2013</option>
+                                    <option value="2012">2012</option>
+                                    <option value="2011">2011</option>
+                                    <option value="2010">2010</option>
+                                    <option value="2009">2009</option>
+                                    <option value="2008">2008</option>
+                                    <option value="2007">2007</option>
+                                    <option value="2006">2006</option>
+                                    <option value="2005">2005</option>
+                                    <option value="2004">2004</option>
+                                    <option value="2003">2003</option>
+                                    <option value="2002">2002</option>
+                                    <option value="2001">2001</option>
+                                    <option value="2000">2000</option>
+                                    <option value="1999">1999</option>
+                                    <option value="1998">1998</option>
+                                    <option value="1997">1997</option>
+                                    <option value="1996">1996</option>
+                                    <option value="1995">1995</option>
+                                    <option value="1994">1994</option>
+                                    <option value="1993">1993</option>
+                                    <option value="1992">1992</option>
+                                    <option value="1991">1991</option>
+                                    <option value="1990">1990</option>
+                                    <option value="1989">1989</option>
+                                    <option value="1988">1988</option>
+                                    <option value="1987">1987</option>
+                                    <option value="1986">1986</option>
+                                    <option value="1985">1985</option>
+                                    <option value="1984">1984</option>
+                                    <option value="1983">1983</option>
+                                    <option value="1982">1982</option>
+                                    <option value="1981">1981</option>
+                                    <option value="1980">1980</option>
+                                    <option value="1979">1979</option>
+                                    <option value="1978">1978</option>
+                                    <option value="1977">1977</option>
+                                    <option value="1976">1976</option>
+                                    <option value="1975">1975</option>
+                                    <option value="1974">1974</option>
+                                    <option value="1973">1973</option>
+                                    <option value="1972">1972</option>
+                                    <option value="1971">1971</option>
+                                    <option value="1970">1970</option>
+                                    <option value="1969">1969</option>
+                                    <option value="1968">1968</option>
+                                    <option value="1967">1967</option>
+                                    <option value="1966">1966</option>
+                                    <option value="1965">1965</option>
+                                    <option value="1964">1964</option>
+                                    <option value="1963">1963</option>
+                                    <option value="1962">1962</option>
+                                    <option value="1961">1961</option>
+                                    <option value="1960">1960</option>
+                                    <option value="1959">1959</option>
+                                    <option value="1958">1958</option>
+                                    <option value="1957">1957</option>
+                                    <option value="1956">1956</option>
+                                    <option value="1955">1955</option>
+                                    <option value="1954">1954</option>
+                                    <option value="1953">1953</option>
+                                    <option value="1952">1952</option>
+                                    <option value="1951">1951</option>
+                                    <option value="1950">1950</option>
+                                    <option value="1949">1949</option>
+                                    <option value="1948">1948</option>
+                                    <option value="1947">1947</option>
+                                    <option value="1946">1946</option>
+                                    <option value="1945">1945</option>
+                                    <option value="1944">1944</option>
+                                    <option value="1943">1943</option>
+                                    <option value="1942">1942</option>
+                                    <option value="1941">1941</option>
+                                    <option value="1940">1940</option>
+                                    <option value="1939">1939</option>
+                                    <option value="1938">1938</option>
+                                    <option value="1937">1937</option>
+                                    <option value="1936">1936</option>
+                                    <option value="1935">1935</option>
+                                    <option value="1934">1934</option>
+                                    <option value="1933">1933</option>
+                                    <option value="1932">1932</option>
+                                    <option value="1931">1931</option>
+                                    <option value="1930">1930</option>
+                                    <option value="1929">1929</option>
+                                    <option value="1928">1928</option>
+                                    <option value="1927">1927</option>
+                                    <option value="1926">1926</option>
+                                    <option value="1925">1925</option>
+                                    <option value="1924">1924</option>
+                                    <option value="1923">1923</option>
+                                    <option value="1922">1922</option>
+                                    <option value="1921">1921</option>
+                                    <option value="1920">1920</option>
+                                    <option value="1919">1919</option>
+                                    <option value="1918">1918</option>
+                                    <option value="1917">1917</option>
+                                    <option value="1916">1916</option>
+                                    <option value="1915">1915</option>
+                                    <option value="1914">1914</option>
+                                    <option value="1913">1913</option>
+                                    <option value="1912">1912</option>
+                                    <option value="1911">1911</option>
+                                    <option value="1910">1910</option>
+                                    <option value="1909">1909</option>
+                                    <option value="1908">1908</option>
+                                    <option value="1907">1907</option>
+                                    <option value="1906">1906</option>
+                                    <option value="1905">1905</option>
+                                    <option value="1904">1904</option>
+                                    <option value="1903">1903</option>
+                                    <option value="1902">1902</option>
+                                    <option value="1901">1901</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="ic">
+        <img src="../static/Photo/TingICons.png" alt="">
+        <h1>Онлайн тесты</h1>
+    </div>
+
+
+
+
+    <div class="Auth">
+        <form onsubmit="" action="">
+            <div id='groupLogin' class="pps">
+                <input class="inputs" name="loginTing" type="text " id='loginTing' placeholder="Электронный адрес или логин" required>
+                <div class="valid-feedback LT">
+                    Выглядит неплохо!
+                </div>
+                <div class="invalid-feedback LF">
+                    Неверный логин.
+                </div>
+            </div>
+
+
+            <div id='groupPassword' class="pps">
+                <input class="inputs" name="passwordTing" type="password" id='passwordTing' placeholder="Пароль" required>
+
+                <div class="valid-feedback LT">
+                    Выглядит неплохо!
+                </div>
+                <div class="invalid-feedback LF">
+                    Неверный пароль.
+                </div>
+            </div>
+
+
+            <input class="InLoginButton" type="button" id='submits' value="Войти" onclick="CheckLogins()" disabled>
+            <div class="ZP">
+                <a href="#adaw">Забыли пароль?</a>
+            </div>
+            <hr class="LineHr">
+
+
+            <input class="InRegisterButton" type="button" id='submits' value="Создать аккаунт" onclick="REg()">
+        </form>
+    </div>
+
+    <script>
+        loginw = document.getElementById('loginTing')
+        passw = document.getElementById('passwordTing')
+        botw = document.getElementById('submits')
+        $('.inputs').keyup(function() {
+            console.log(loginw.value, passw.value)
+            if ((loginw.value != '') && (passw.value != '')) {
+                console.log('value')
+                botw.disabled = false
+            } else {
+                botw.disabled = true
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

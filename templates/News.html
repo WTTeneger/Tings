@@ -1,0 +1,62 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+
+<body class="colorBG">
+    <main role="main" class="colorBG">
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+            <img class="mr-3 Trans" src="/static/Photo/TINGICon.png" alt="" width="70" height="70">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100 TingText Font-Nerko-One">TING</h6>
+                <small>Живет с 2020</small>
+            </div>
+        </div>
+        
+
+        <div class="my-3 p-3 shadow-sm colorBG">
+        <h6 class="border-bottom border-gray pb-2 mb-0 mainColor">Recent updates</h6>
+        
+        
+        {% for el in  updates%}
+            {%if loop.index % 3 == 0%}
+                <div class="media text-muted pt-3">
+                    <svg class="bd-placeholder-img mr-2 rounded"  width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>@V{{el[1]}}</title><rect width="100%" height="100%" fill="#6f42c1"></rect><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+                    <p class="media-body pb-3 mb-0 border-bottom  SizeTextMedium" style="color: azure;">
+                    <strong class="d-block text-white ">@V{{el[1]}}</strong>
+                    {{el[2]}}
+                    </p>
+                </div>
+            {%elif loop.index % 2 == 0%}
+                <div class="media text-muted pt-3">
+                    <svg class="bd-placeholder-img mr-2 rounded"  width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>@V{{el[1]}}</title><rect width="100%" height="100%" fill="#e83e8c"></rect><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+                    <p class="media-body pb-3 mb-0  border-bottom  SizeTextMedium" style="color: azure;">
+                    <strong class="d-block text-white ">@V{{el[1]}}</strong>
+                    {{el[2]}}
+                    </p>
+                </div>
+            {% elif loop.index % 1 == 0%}
+                <div class="media text-muted pt-3">
+                    <svg class="bd-placeholder-img mr-2 rounded"  width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>@V{{el[1]}}</title><rect width="100%" height="100%" fill="#007bff"></rect><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+                    <p class="media-body pb-3 mb-0 border-bottom SizeTextMedium" style="color: azure;">
+                    <strong class="d-block text-white ">@V{{el[1]}}</strong>
+                    {{el[2]}}
+                    </p>
+                </div>
+            {%endif%}
+        {% endfor %}
+        </div>
+    
+
+    </main>   
+
+</body>
+</html>
+
+
+{% endblock %}

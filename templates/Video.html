@@ -1,0 +1,79 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+
+  <!-- Custom styles for this template -->
+</head>
+<body id = 'MainBodyBlock' class="colorBG">
+<main class="colorBG" role="main">
+
+<style>
+.MMBox{
+    margin-top: 2%;
+    padding-left:  17%;
+    padding-right: 17%;
+    margin-left: auto;
+    margin-right: auto;
+    }
+  
+</style>
+
+
+
+<div class="container colorBG"></div>
+  <h1 class="mainColor SizeTextBig">Видео</h1>
+  <hr class="featurette-divider">
+</div>
+
+<style>
+  .gridBlockVideo {
+    grid-gap: 60px;
+    grid-template-columns: repeat(2,1fr);
+    position: relative;
+    display: grid;
+  }
+  @media (max-width: 1500px){
+    .gridBlockVideo {
+      grid-gap: 60px;
+      grid-template-columns: repeat(1,1fr);
+      position: relative;
+      display: grid;
+    }
+  }
+  .borders{
+    box-shadow: 0px 0px 0px 20px #292929;
+    border-radius: .1px;
+  }
+</style>
+
+<body id = 'MainBodyBlock' class="colorBG">
+  <div class="MMBox">
+    <div class="BlockSecond">
+      <div class="gridBlockVideo">
+        {% for el in VideoData%}
+            <div class="borders">
+                <h1 class="mainColor SizeTextBig">{{el[1]}}</h1>
+                <div class="embed-responsive embed-responsive-4by3">
+                    <iframe class="embed-responsive-item" src="{{el[2]}}"></iframe>
+                </div>
+            </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <!-- Тут писать код -->
+</body>
+
+</main>
+
+
+</body></html>
+
+
+{% endblock %}

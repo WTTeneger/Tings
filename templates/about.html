@@ -1,0 +1,112 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+<style>
+    /* Трансформ фоток в about */
+  .TPrhoto1, .TPrhoto2, .TPrhoto3{
+    transition: 1s; 
+  }
+  .TPrhoto1:hover{
+    transform: skew(-20deg, -15deg);
+  }
+  .TPrhoto2:hover{
+    transform: skew(16deg, 12deg);
+    /*transform: skew(-33deg, -2deg);*/
+  }
+  .TPrhoto3:hover{
+    transform: skew(-6deg, -13deg);
+  }
+
+  @keyframes front-rotation{
+    0% {
+        transform: skew(0deg, 0deg);
+    }
+    50% {
+        transform: skew(38deg, 50deg);
+    }
+    100%{
+        transform: skew(0deg, 0deg);
+    }
+  }
+  
+</style>
+<body class="colorBG">
+    <main role="main" class="colorBG">
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+            <img class="mr-3 Trans" src="/static/Photo/TINGICon.png" alt="" width="70" height="70">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100 TingText Font-Nerko-One">TING</h6>
+                <small>Живет с 2020</small>
+            </div>
+        </div>
+        
+
+        <style>
+            .aEA{
+                padding-top: 90px;
+            }
+        </style>
+        <div class="container marketing">
+
+
+        <hr class="featurette-divider">
+    
+        <div class="row featurette">
+            <div class="col-md-7 aEA">
+                <h2 class="mainColor">TING это проект нацеленный на образование, читай дальше. <span class="GreanC">It’ll blow your mind.</span></h2>
+                <p class="MutedText">Данный проект совмещает в себе, тесты - в которых вы учитесь на своих ошибках, или проверяем себя и свои знания. Инвистиции - вы можете пополнять баланс данного сайта, и играть на эти деньги. ВидеоУроки - Которые подтянут вас в определенной облости, или научат вас новому.</p>
+            </div>
+            <div class="col-md-5">
+                <img class="TPrhoto1 bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="/static/Photo/TINGIRecurs.png" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
+            </div>
+        </div>
+    
+        <hr class="featurette-divider">
+    
+        <div class="row featurette">
+            <div class="col-md-7 order-md-2 aEA">
+                <h2 class="mainColor">Почему <span class="orangeC">TING</span></h2>
+                <p class="MutedText">Данный проект нацелен в первую очередь для поднятия уровня знания, наши базы вопросов расскажут вам много интересного, и напомнит вам то что вы уже знаете. у нас есть более 10 направленией начаная от Английского на который выделен один отдельный тест (1 in 6) заканчивая музыкой и программированием в глобальном тесте. Наши базы обновляются каждую неделю</p>
+
+            </div>
+            <div class="col-md-5 order-md-1">
+                <img class="TPrhoto2 bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="/static/Photo/TEXT.png" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
+            </div>
+        </div>
+    
+        <hr class="featurette-divider">
+    
+        <div class="row featurette">
+            <div class="col-md-7 aEA">
+                <h2 class="mainColor">ВидеоУроки на <span class="redC">TING</span></h2>
+                <p class="MutedText">Так же наш проект предоставляет бесплатные ВидеоУроки собранные с различных уголков интернета, и на различные тематики от космоса до маленьких обучающих видео специально для вас. Так же тут будет наши ВидеоУроки которые научат вас новому, от шитья до построения прекрасных замков</p>
+
+            </div>
+            <div class="col-md-5">
+                <img class="TPrhoto3 bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="/static/Photo/VideoTing.png" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500">
+            </div>
+        </div>
+    
+        <hr class="featurette-divider">
+    
+        <!-- /END THE FEATURETTES -->
+    
+        </div><!-- /.container -->
+    
+
+
+
+
+    </main>   
+
+</body>
+</html>
+
+
+{% endblock %}

@@ -1,0 +1,212 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+<body class="colorBG">
+    <main role="main" class="colorBG">
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+            <img class="mr-3 Trans" src="/static/Photo/TINGICon.png" alt="" width="70" height="70">
+            <div class="lh-100">
+                <h6 class="mb-0 text-white lh-100 TingText Font-Nerko-One">TING</h6>
+                <small>Живет с 2020</small>
+            </div>
+        </div>
+        
+        <style>
+            .pPP{
+                margin-top: 25px;
+            }
+            .modal-contentSS {
+                background-color: #333333;
+                margin: 0% auto 0% auto;
+                border: 1px solid #464646;
+                width: 50%;
+            }
+            .BUTREPSS {
+                font-size: calc(.5em + 1vw);
+                display: inline-block;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: #171717;
+                border: 1px solid transparent;
+                
+                padding: .375rem .75rem;
+                margin-right: 5%; 
+                line-height: 1.5;
+                border-radius: .25rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 3%;
+            }
+            .BUTREPSSS {
+                font-size: calc(.5em + 1vw);
+                display: inline-block;
+                font-weight: 400;
+                color: #ffffff;
+                text-align: center;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                background-color: #171717;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                text-align: center;
+                font-weight: bold;
+                margin-bottom: 3%;
+            }
+            .BUTREPSSS:hover, .BUTREPSS:hover{
+                text-decoration: none;
+                color: #01F9B6;
+                border-color: #01F9B6;
+            }
+            .ErrorP{
+                color: brown;
+            }
+            .TrueP{
+                
+                color: green;
+            }
+        </style>
+        <script>
+            
+
+            function CheckPasswordder(){
+                a = [false, false, false]
+                p1 = document.getElementById('P1').value
+                p2 = document.getElementById('P2').value
+                console.log(p1,p2)
+                if((p1.indexOf(' ') == -1 && p2.indexOf(' ') == -1) && (p1.indexOf('^') == -1 && p2.indexOf('^') == -1) && (p1.indexOf('\\') == -1 && p2.indexOf('\\') == -1) ){
+                    a[2] = true
+                    document.getElementById('E3').classList.remove('ErrorP')
+                    document.getElementById('E3').classList.add('TrueP')
+                }
+                else{
+                    a[2] = false
+                    document.getElementById('E3').classList.remove('TrueP')
+                    document.getElementById('E3').classList.add('ErrorP')
+                }
+                if(p1 == p2){
+                    a[1] = true
+                    document.getElementById('E2').classList.remove('ErrorP')
+                    document.getElementById('E2').classList.add('TrueP')
+                }
+                else{
+                    a[1] = false
+                    document.getElementById('E2').classList.remove('TrueP')
+                    document.getElementById('E2').classList.add('ErrorP')
+                }
+                if((p1.length) > 8 || (p2.length) > 8){
+                    a[0] = true
+                    document.getElementById('E1').classList.remove('ErrorP')
+                    document.getElementById('E1').classList.add('TrueP')
+                }
+                else{
+                    a[0] = false
+                    document.getElementById('E1').classList.remove('TrueP')
+                    document.getElementById('E1').classList.add('ErrorP')
+                }
+                
+                console.log(a)
+                if(a[0] == true && a[1] == true && a[2] == true){
+                    console.log('TeButt')
+                    document.getElementById('TeButt').style.display = 'inline-block'
+                    document.getElementById('TeButt').disabled = false
+                }
+                else{
+                    document.getElementById('TeButt').style.display = 'none'
+                    document.getElementById('TeButt').disabled = true
+                }
+                
+                
+            }
+        </script>
+        <div class="my-3 p-3 shadow-sm colorBG">
+            {% if TeT == True%}
+                <div style="text-align: center; margin-left: 20%; margin-right: 20% ;">
+                    <div class="imgcontainer">
+                        <p class="GreanC SizeTextBig">Пароль сброшен</p>
+                    </div>
+                
+                    <p class="mainColor SizeTextBig">Чтобы войти в акаунт используете его</p>
+                    <div style="text-align: center;">
+                        <a href="/" class="BUTREPSSS" type="submit">Закончить</a>
+                    </div>
+                </div>
+            {% elif TeT == False%}
+            <form id="LoginModals" class="modal-contentSS animate" action="/ForgettenMail/{{Toc}}" method="POST" enctype="multipart/form-data">
+                <div class="imgcontainer">
+                    <h1 class="orangeC SizeTextBig">Не шали</h1>
+                </div>
+            
+                <div class="Formers MCOLOR">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1" style="width: 80%;">Пожалуйста, введите новый пароль</label>
+                        <input type="password" oninput="CheckPasswordder()" class="form-control formers" id="P1" name="P1" placeholder="Пароль" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" oninput="CheckPasswordder()" class="form-control formers" id="P2" name="P2" placeholder="Повторно пароль" required>
+                    </div>
+                </div>
+                <h5 id ='E1' style="margin-left: 20px" class="ErrorP CVFont">Длинна меньше 8</h5>
+                <h5 id ='E2' style="margin-left: 20px" class="ErrorP  CVFont">Пароли не совпадают</h5>
+                <h5 id ='E3' style="margin-left: 20px" class="ErrorP CVFont">Нельзя использовать пробел, \ , ^</h5>
+                <!-- <h5 id ='E4' style="margin-left: 20px" class="ErrorP  CVFont">Сброс пароля</h5> -->
+                <div style="text-align: right; margin-top: 20px;">
+                    <button id = 'TeButt' class="BUTREPSSS" type="submit" style="display: none;" disabled>Подтвердить</button>
+                    <a href="/" class="BUTREPSS" type="submit">Вернуться</a>
+                </div>
+            </form>
+
+            {% else %}
+                <form id="LoginModals" class="modal-contentSS animate" action="/ForgettenMail/{{Toc}}" method="POST" enctype="multipart/form-data">
+                    <div class="imgcontainer">
+                        <h1 class="orangeC SizeTextBig">Сброс пароля</h1>
+                    </div>
+                
+                    <div class="Formers MCOLOR">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1" style="width: 80%;">Пожалуйста, введите новый пароль</label>
+                            <input type="password" oninput="CheckPasswordder()" class="form-control formers" id="P1" name="P1" placeholder="Пароль" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" oninput="CheckPasswordder()" class="form-control formers" id="P2" name="P2" placeholder="Повторно пароль" required>
+                        </div>
+                    </div>
+                    <h5 id ='E1' style="margin-left: 20px" class="ErrorP CVFont">Длинна меньше 8</h5>
+                    <h5 id ='E2' style="margin-left: 20px" class="ErrorP  CVFont">Пароли не совпадают</h5>
+                    <h5 id ='E3' style="margin-left: 20px" class="ErrorP CVFont">Нельзя использовать пробел, \ , ^</h5>
+                    <!-- <h5 id ='E4' style="margin-left: 20px" class="ErrorP  CVFont">Сброс пароля</h5> -->
+                    <div style="text-align: right; margin-top: 20px;">
+                        <button id = 'TeButt' class="BUTREPSSS" type="submit" style="display: none;" disabled>Подтвердить</button>
+                        <a href="/" class="BUTREPSS" type="submit">Вернуться</a>
+                    </div>
+                </form>
+            {%endif%}
+
+        </div>
+    
+
+    </main>   
+
+</body>
+</html>
+
+
+{% endblock %}

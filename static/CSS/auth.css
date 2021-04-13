@@ -1,0 +1,286 @@
+.BAuth {
+    background-color: #3A3A3A;
+    margin: 0;
+}
+
+.ic {
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 7rem;
+}
+
+.ic img {
+    width: calc(70vw);
+    margin-top: -55px;
+    max-width: 220px;
+}
+
+.ic h1 {
+    margin-top: -50px;
+    color: #717070;
+    font-size: calc(1.6rem + 6 * (100vw - 320px) / 880);
+}
+
+.PanelAuth {
+    background-color: #2D2D2D;
+    margin: auto auto;
+    max-width: 500px;
+}
+
+.form-group {
+    padding-top: 2vw;
+    text-align: center;
+}
+
+.form-group input {
+    max-width: 300px;
+    width: 70%;
+}
+
+.LineHr {
+    width: 80%;
+    border: none;
+    /* Убираем границу для браузера Firefox */
+    color: #464646;
+    /* Цвет линии для остальных браузеров */
+    background-color: #464646;
+    /* Цвет линии для браузера Firefox и Opera */
+    height: 1.5px;
+    /* Толщина линии */
+}
+
+.MainMorder {
+    min-height: 98vh;
+    height: 100vh;
+    background: #373737;
+}
+
+input {
+    outline: none;
+}
+
+.MainIcon {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    padding-top: 50px;
+    padding-bottom: 8%
+}
+
+.TextIcon {
+    color: #ffffff;
+    font-size: calc(5rem + 1vw);
+    font-weight: bold;
+}
+
+.Auth {
+    width: 50%;
+    text-align: center;
+    margin: auto auto;
+    background: #2D2D2D;
+    border-radius: 21px;
+}
+
+.Auth form {
+    padding: 2.5rem 0px;
+}
+
+@media (max-width: 768px) {
+    .Auth {
+        width: 80%
+    }
+}
+
+.pps {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.labels {
+    color: #DF8822;
+    font-size: calc(1rem + 1vw);
+    font-weight: bold;
+    width: 90%;
+    text-align: left;
+    margin-bottom: .2rem;
+}
+
+.inputs {
+    height: calc(1.4rem + 1vw);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-weight: bold;
+    width: 100%;
+    /* Rectangle 7 */
+    background: #464646;
+    border: 2px solid #6F6F6F;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #b8b8b8;
+    height: 100vw;
+    min-height: 20px;
+    max-height: 50px;
+    margin-bottom: .4em;
+    font-size: calc(0.6rem + 6 * (100vw - 320px) / 880);
+}
+
+.inputs:focus {
+    box-shadow: 0px 11px 21px 0 #060606;
+}
+
+.inputs::placeholder {
+    color: #BDB8B8;
+}
+
+#groupLogin,
+#groupPassword {
+    padding-bottom: 25px;
+}
+
+
+/* Кнопка войти */
+
+.InLoginButton {
+    transition: background .2s, color .2s;
+    width: 70%;
+    height: calc(2.4rem + 1vw);
+    background: #B53F3F;
+    border: none;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+    font-size: calc(1rem + 1vw);
+    cursor: pointer;
+}
+
+.InLoginButtonNotActive {
+    width: 40%;
+    height: calc(2.4rem + 1vw);
+    border: none;
+    font-weight: bold;
+    font-size: calc(1rem + 1vw);
+    background: #C9C9C9;
+    color: #464545;
+}
+
+.InLoginButton:enabled:hover {
+    transition: .2s;
+    box-shadow: 0px 0px 10px 0px #b93e3e;
+}
+
+.InLoginButton:disabled {
+    background: #C9C9C9;
+    color: #464545;
+    cursor: default;
+}
+
+
+/* Кнопка регистр */
+
+.InRegisterButton {
+    margin-top: 30px;
+    transition: background .2s, color .2s;
+    width: 60%;
+    height: calc(2.4rem + 1vw);
+    border: none;
+    font-weight: bold;
+    background: #368127;
+    color: white;
+    font-size: calc(.8rem + .3vw);
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.InRegisterButton:enabled:hover {
+    transition: .3s;
+    box-shadow: 0px 0px 210px 0px #368127;
+}
+
+
+/*  */
+
+.ZP {
+    margin-top: 15px;
+}
+
+.ZP a {
+    color: #B53F3F;
+    text-decoration: none;
+    font-size: calc(1rem + 6 * (100vw - 320px) / 880);
+    font-weight: bold;
+}
+
+.ZP a:hover {
+    text-decoration: revert;
+}
+
+.fouter {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+
+/* ПП */
+
+.valid-feedback,
+.invalid-feedback {
+    display: none;
+}
+
+.LT {
+    color: #368127;
+}
+
+.LF {
+    color: #b93e3e;
+}
+
+.Pupi {
+    top: -50vw;
+    position: absolute;
+    background: #F5BB62;
+    border-radius: 0px 0px 4vw 4vw;
+    color: #363636;
+    left: 15vw;
+    width: 70vw;
+    text-align: center;
+    /* animation: PupiFrame 5s; */
+    /* анимация */
+}
+
+.Pupi:disabled {
+    animation: PupiFrame 3s
+}
+
+.Pupi h1 {
+    padding-top: calc(.2vw + .2rem);
+    padding-bottom: calc(.2vw + .2rem);
+    font-weight: bold;
+    font-size: calc(1vw + 1rem);
+}
+
+@keyframes PupiFrame {
+    from {
+        top: -50vw;
+    }
+    10% {
+        top: 0vw;
+        animation-timing-function: ease-in;
+    }
+    30% {
+        top: 0vw;
+        animation-timing-function: ease-out;
+    }
+    90% {
+        top: 0vw;
+        animation-timing-function: ease-in;
+    }
+    to {
+        top: -50vw;
+    }
+}

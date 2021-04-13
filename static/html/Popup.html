@@ -1,0 +1,21 @@
+<div class="Pupi" id='PHelper'>
+    <h1 id='PHelperText'>Подсказка</h1>
+</div>
+<script>
+    Timerss = 0
+
+    function StatePopup(Text) {
+        document.getElementById('PHelperText').innerHTML = Text;
+        Timerss = Date.now();
+        setTimeout(() => {
+            if (Timerss < Date.now() - 5000) {
+                console.log(Timerss, Date.now() - 5000)
+                document.getElementById('PHelper').style = "";
+            } else {
+                console.log('нажал ещё раз', Timerss < Date.now() - 5000)
+            }
+        }, 5000);
+        document.getElementById('PHelper').style = "animation: PupiFrame 5s";
+
+    }
+</script>

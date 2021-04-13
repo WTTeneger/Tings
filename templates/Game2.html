@@ -1,0 +1,227 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+<title>TING · Учи английский</title>
+{% endblock %}
+
+
+{% block body %}
+<style>
+  .ButtonFalse{
+    box-shadow: 0 0 20px 15px #b63939;
+    
+
+  }
+  .ButtonTrue{
+    box-shadow: 0 0 20px 15px #3ab53d66;
+  }
+
+  .ButtonBr{
+      grid-gap: 30px;
+      grid-template-columns: repeat(2,1fr);
+      position: relative;
+      display: grid;
+  }
+  .ButtomGame {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border-radius: .75rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #ffffff;
+    background: #333333;
+    border-color: #01f9b798;
+  }
+  .ButtomGame:hover{
+    background: #161616;
+  }
+  .PBar{
+    width: 100%;
+    background: bottom;
+  }
+
+</style>
+<script>
+  function BackZiro(){
+    begin = new Date().getTime();
+    var request = new XMLHttpRequest();
+    function reqReadyStateChange() {
+        if (request.readyState == 4 && request.status == 200)
+            document.getElementById("output").innerHTML=request.responseText;
+    }
+    var formData = new FormData();
+    formData.append('APIBLOCK', '2');
+    request.open("POST", "/APIBLOCK?APIBLOCK=2&Data="+begin);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    request.onreadystatechange = reqReadyStateChange;
+    request.send(formData);
+  }
+</script>
+<script>
+  T = false
+  ButtonData = '';
+  // ВТОРОСТЕПЕННАЯ ПРОВЕРКА ОТВЕТА ОСНОВНАЯ В Python
+  let TimerScore = 14
+  let FBR = false  
+  function timerse(){
+    if(TimerScore > 0 && FBR == false){
+      document.getElementById('Timer').innerHTML = TimerScore
+      console.log(TimerScore)
+      TimerScore = TimerScore - 1
+      setTimeout(timerse, 1000);
+    } 
+    else if(TimerScore <= 0 && FBR == false){
+      console.log("Все конец")
+      
+      BackZiro()
+      document.location.href = "/endGame";
+      //Тут будем писать сколько верных и возвращать в меню
+      }
+
+    else if(FBR == "OTV"){
+      console.log("дан ответ")
+    }
+    else{
+      
+    }
+    
+  }
+  setTimeout(timerse, 1000);
+
+  function ContinueGame(data){
+    function GE(){
+      if(data == "True"){
+        console.log('Тут будем дальше')
+        document.location.href = "/StartGame2";
+        //Тут будем тут
+      }
+      else{
+        console.log('Тут будем писать сколько верных и возвращать в меню')
+        BackZiro()
+        document.location.href = "/endGame";
+        //Тут будем писать сколько верных и возвращать в меню
+      }
+    }
+  
+    console.log(ButtonData)
+    a = document.getElementsByName('VR')
+    b = 0
+    while (b < 4){
+      console.log(b)
+      a[b].disabled = true;
+      b += 1
+    }
+    if(data == "True"){
+      ButtonData.classList.add("ButtonTrue");
+      FBR = 'OTV'
+      console.log('Все верно', data)
+    }
+    else{
+      FBR = 'OTV'
+      ButtonData.classList.add("ButtonFalse");
+      ButtonData.style = 'border-color: brown;'
+      console.log('Не верно', data)
+    }
+    setTimeout(GE, 1000);
+  }
+
+  function StartGame(Word){
+    function SetGame() {
+      var xmlHttp = null;
+      try {
+          xmlHttp = new XMLHttpRequest();
+      } catch (e) {
+          try {
+              xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+          } catch (e) {
+              xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+          }
+      }
+      return xmlHttp;
+    }
+    xmlHttp = SetGame()
+    if (xmlHttp == null) {
+        return;
+    }
+    begin = new Date().getTime();
+    GameId = document.getElementById('GameID').innerHTML
+    Words = (Word.innerHTML)
+    console.log("GameToken=" + GameId + "&Data=" + begin + '&Word=' + Words)
+    url = "/StartGame2?GameToken=" + GameId + "&Data=" + begin + '&Word=' + Words
+    
+    xmlHttp.open("POST", url, true);
+    xmlHttp.onreadystatechange = updateTrngDisplayAjaxGame;
+    xmlHttp.send(null);
+  }
+  
+  function updateTrngDisplayAjaxGame() {
+    if (xmlHttp.readyState < 4) {
+        console.log("Wait_reg_data...")
+    }
+    if (xmlHttp.readyState == 4) {
+        var waitremain = 600 - (new Date().getTime() - begin);
+        if (waitremain > 0) {
+            setTimeout(printNumberGame, waitremain);
+        } else {
+          printNumberGame();
+        }
+    }
+  }
+  
+  function printNumberGame() {
+      var trngresponse = xmlHttp.responseText;
+      ContinueGame(trngresponse)
+  }
+
+  function GiveAnswer(Word){
+    if(T == false){
+      T = true
+      ButtonData = Word
+      StartGame(Word)
+    }
+      
+    
+  }
+</script>
+</head>
+  <body id = 'MainBodyBlock' class="colorBG">
+    <main class="colorBG" role="main">
+      <p hidden id = 'GameID'>{{GameD['GameCode']}}</p>
+      <div style="text-align: center;">
+        <samp class="CVFont mainColor SizeTextBig">Questions</samp>
+        <p class="SizeTextMedium MutedText">(Интересные вопросы)</p>
+      </div>
+      
+      <div style="padding-left: 15%; padding-right: 15%;">
+        <div class="progress" style="height: 20px;">
+          <div class="progress-bar bg-info" role="progressbar" style="width: {{Proc * 20}}%; font-weight: bold;">{{Proc}}</div>
+        </div>
+      </div>
+      <p id ='Timer' class="SizeTextBig MutedText">15</p>
+
+      <div style="text-align: center; padding-left: 15%; padding-right: 15%;">
+        <samp class="CVFont mainColor SizeTextBig">{{VPTrue}}</samp>
+      
+        <div style="padding-top: 5%;" class="ButtonBr">
+          {% for obj in VP%}
+            <button onclick="GiveAnswer(this)" name = 'VR' style="padding-left: 10%; padding-right: 10%;" class="ButtomGame SizeTextMidle">{{obj}}</button>
+          {%endfor%}
+        </div>
+      </div>
+    </main>
+  </body>
+{% endblock %}
+
+
+
+

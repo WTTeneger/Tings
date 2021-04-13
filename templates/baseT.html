@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/static/Photo/SiteIcon.png" type="image/png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link rel="stylesheet" type="text/css" href="/static/CSS/base.css">
+    <script src="/static/JS/base.js" type="text/javascript"></script>
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <!--  -->
+    {% block title %} {% endblock %}
+</head>
+
+<nav style="background: #3b3b3bfe; z-index: 4" class="site-header sticky-top py-1" id='HeaderMain'>
+    <div class="containerss d-flex flex-column flex-md-row justify-content-between">
+        <a id='IconA' class="py-2" href="/" aria-label="Product">
+            <img class="IconMain" src="/static/Photo/TingICons.png" alt="" width="24" height="24">
+        </a>
+        <a id='m1' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/main">Главная</a>
+        <a id='m2' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/news">Новости</a>
+        <a id='m3' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="video">Видео</a>
+        <a id='m4' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/about">О нас</a>
+        <a id='m5' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/InDeveloper">Как это работает</a>
+        <!--  -->
+        {% if login == True%}
+        <div class="row">
+            <button onclick="St()" class="ButtomUR Ber" style="margin-top: 0.2%;" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC ">{{data[8]}}₽</span></button><br>
+            <button onclick='BR()' class="ButtomUR" id='myBtnExit'>выйти</button>
+        </div>
+        {%else%}
+        <button>das</button>
+        <!--  -->
+        {%endif%}
+        <button class="ButtomUR menuB" onclick="openNav()">Меню</button>
+    </div>
+</nav>
+
+<!-- The overlay -->
+<div id="myNav" class="overlay">
+    <!-- Button to close the overlay navigation -->
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+    <!-- Overlay content -->
+    <div class="overlay-content">
+        <a href="/main">Главная</a>
+        <a href="/news">Новости</a>
+        <a href="/video">Видео</a>
+        <a href="/InDeveloper">Как это работает</a>
+        <a style="margin-bottom: 2%;" href="/about">О нас</a> {% if login == True%}
+        <button onclick="St()" class="ButtomUR" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC">{{data[8]}}₽</span></button>
+        <button onclick='BR()' class="ButtomUR" id='myBtnEx'>выйти</button> {%else%}
+        <button class="ButtomUR" onclick="document.getElementById('RegModal').style.display='block';document.getElementById('MainBodyBlock').classList.add('MenuState'); document.getElementById('myNav').style.height = '0%'">Регистрация / Войти</button>        {%endif%}
+    </div>
+</div>
+{% if login == True %}
+<link rel="stylesheet" type="text/css" href="/static/CSS/base1.css">
+
+<div id="LogInterface" class="modalInterface">
+
+    <form id="RegForms" class="modal-content animate" action="/userSTR?TT_RRBR=register" method="POST" enctype="multipart/form-data">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('LogInterface').style.display='none';" class="close" title="Close Modal">×</span>
+            <p class="orangeC SizeTextBig">Регистрация</p>
+            <img src="" class="avatar">
+        </div>
+
+    </form>
+
+</div>
+
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('LogInterface');
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+
+{%else%}
+
+<script>
+    dataPP = true
+
+    function NewWinPP(url) {
+        window.open(url);
+    }
+
+    function NewWinPPP(url) {
+        document.location.replace(url);
+
+    }
+
+    // Get the modal
+    var modal = document.getElementById('RegModal');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+            document.getElementById('MainBodyBlock').classList.remove('MenuState')
+        }
+    }
+</script>
+
+{%endif%} {% block body%}{% endblock %}
+</div id='FouterMain'>
+
+<footer class="mastfoot mt-auto">
+    <div>
+        <!-- <div style="position: fixed; bottom: 0; width: 100%;"> -->
+        <hr class="featurette-divider">
+        <p class="mainColor">Сайт сделал <a href="https://t.me/WT_Tini" target="blank" style="color: #FFAD5B; font-size: 130%; text-decoration: none;" class="CVFont orangeC">@WT_Tini</a></p>
+        <p class="mainColor">swintages@gmail.com</p>
+    </div>
+</footer>
+
+</body>
+<style>
+    .menuB {
+        display: none;
+    }
+    
+    .Ber {
+        display: block;
+    }
+    
+    @media (max-width: 768px) {
+        #RegForms {
+            height: 100%;
+            width: 100%;
+            margin: 0% auto 15% auto;
+        }
+        #LoginModals {
+            width: 100%;
+            margin: 0% auto 15% auto;
+        }
+        #RegModal {
+            padding-top: 0px;
+        }
+        #IconA {
+            text-align: center;
+        }
+        .Ber {
+            display: none;
+        }
+        #myBtnExit {
+            display: none;
+        }
+        .menuB {
+            display: block;
+        }
+    }
+</style>
+
+</html>

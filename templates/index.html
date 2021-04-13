@@ -1,0 +1,469 @@
+ {% extends 'base.html' %} {% block title %}
+<title>TING · Учи английский</title>
+{% endblock %} {% block body %}
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+    
+    .StartTextMain {
+        line-height: 63px;
+        text-align: left;
+    }
+    
+    .MMBox {
+        margin-top: 2%;
+        padding-left: 17%;
+        padding-right: 17%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .tabs-list__items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100vw;
+    }
+    
+    .tabs-list__item {
+        flex-shrink: 0;
+        margin-bottom: 10px;
+        margin-right: 2%;
+    }
+    
+    .uiTab:hover {
+        border-color: #666666;
+        background: #131313;
+        color: #01f9b7;
+    }
+    
+    .uiTab {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        font: inherit;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        border: 1px solid #000;
+        border-radius: 100px;
+        color: #000;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .3s, color .3s;
+        padding: 18px 24px;
+        font-weight: 500;
+        font-size: 18px;
+        border-color: #01f9b798;
+    }
+    
+    .uiTab2:hover {
+        border-color: #666666;
+        background: #131313;
+        color: #01f9b7;
+    }
+    
+    .uiTab2 {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        border-radius: 100px;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .3s, color .3s;
+        padding: 18px 24px;
+        border-color: #01f9b798;
+        background: #626262;
+        border-radius: 0.55rem;
+        font-size: 120%;
+        font-weight: bold;
+    }
+    
+    .BlockFirst {
+        margin-bottom: 10%;
+    }
+    
+    .gridBlock {
+        position: relative;
+        display: grid;
+        grid-gap: 10px;
+        margin-bottom: 2%;
+    }
+    
+    @media (min-width: 768px) {
+        .gridBlock {
+            grid-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            position: relative;
+            display: grid;
+        }
+    }
+    
+    @media (min-width: 1280px) {
+        .gridBlock {
+            grid-gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    .CC {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .55rem;
+        padding: 3%;
+        min-width: 100%;
+        min-height: 100%;
+        transition: background-color .3s, color .3s;
+    }
+    
+    .BLackC {
+        color: #181818;
+        font-weight: bold;
+    }
+    
+    .GrawC {
+        color: #3a3a3a;
+        font-weight: 500;
+    }
+    
+    .DText {
+        right: 1%;
+        bottom: 0;
+        position: absolute;
+    }
+    
+    .DPhoto {
+        top: 0;
+        right: 1%;
+        position: absolute;
+        width: 25%;
+    }
+    
+    .PLast {
+        margin-bottom: 7%;
+    }
+    
+    .GridBlockInf {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
+        grid-template-rows: min-content 1fr min-content;
+        height: 100%;
+        min-height: 130px;
+    }
+    
+    .card__pic {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        max-width: 100%;
+    }
+    
+    .CC:hover {
+        text-decoration: tan;
+        background: #a32c42;
+    }
+</style>
+<style>
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
+</style>
+<script type="text/javascript">
+    let bgount = ''
+
+    function Cl(t) {
+        bgount = t.style.background
+            //document.getElementById('s').textContent
+        try {
+            let Col = (t.getElementsByClassName('CB')[0].textContent)
+            t.style.background = Col;
+        } catch {}
+
+    }
+
+    function Ol(t) {
+        t.style.background = bgount;
+    }
+</script>
+<script>
+    function ContinueGame(data) {
+        if (data != "False") {
+            begin = new Date().getTime();
+            console.log("Trues ", data)
+            document.location.href = "/StartGame?GameToken=" + data + "&Data=" + begin;
+        } else {
+            document.location.href = '/'
+        }
+
+    }
+
+    function StartGame(GameId) {
+        function SetGame() {
+            var xmlHttp = null;
+            try {
+                xmlHttp = new XMLHttpRequest();
+            } catch (e) {
+                try {
+                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+                } catch (e) {
+                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+            }
+            return xmlHttp;
+        }
+        xmlHttp = SetGame()
+        if (xmlHttp == null) {
+            return;
+        }
+        begin = new Date().getTime();
+
+        url = "/SetGameAPI?GameID=" + GameId + "&Data=" + begin
+
+        xmlHttp.open("POST", url, true);
+        xmlHttp.onreadystatechange = updateTrngDisplayAjaxGame;
+        xmlHttp.send(null);
+    }
+
+    function updateTrngDisplayAjaxGame() {
+        if (xmlHttp.readyState < 4) {
+            console.log("Wait_reg_data...")
+        }
+        if (xmlHttp.readyState == 4) {
+            var waitremain = 600 - (new Date().getTime() - begin);
+            if (waitremain > 0) {
+                setTimeout(printNumberGame, waitremain);
+            } else {
+                printNumberGame();
+            }
+        }
+    }
+
+    function printNumberGame() {
+        var trngresponse = xmlHttp.responseText;
+        ContinueGame(trngresponse)
+    }
+
+
+
+
+
+    function EndPopup() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.remove("show");
+    }
+
+    function CopyURL() {
+        // Create a "hidden" input
+        var aux = document.createElement("input");
+
+        // Assign it the value of the specified element
+        aux.setAttribute("value", document.getElementById('CopyTexts').innerHTML);
+
+        // Append it to the body
+        document.body.appendChild(aux);
+
+        // Highlight its content
+        aux.select();
+
+        // Copy the highlighted text
+        document.execCommand("copy");
+
+        // Remove it from the body
+        document.body.removeChild(aux);
+
+
+
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        setTimeout(EndPopup, 5000);
+
+
+    }
+</script>
+<!-- Custom styles for this template -->
+</head>
+
+<body id='MainBodyBlock' class="colorBG">
+    <main class="colorBG" role="main">
+
+        <style>
+            /* Popup container */
+            
+            .popup {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+            }
+            /* The actual popup (appears on top) */
+            
+            .popup .popuptext {
+                visibility: hidden;
+                width: 160px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px 0;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -80px;
+            }
+            /* Popup arrow */
+            
+            .popup .popuptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+            /* Toggle this class when clicking on the popup container (hide and show the popup) */
+            
+            .popup .show {
+                visibility: visible;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s
+            }
+            /* Add animation (fade in the popup) */
+            
+            @-webkit-keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+        </style>
+
+
+        <section class="text-center colorBG">
+            <div class="container colorBG">
+                <h1 class="mainColor SizeTextBig">Тесты</h1>
+                <h5 class="MutedText SizeTextSmall"></h5>
+                <div style="display: none;">
+                    <h4 class="mainColor SizeTextMidle">Ваша реферальная ссылка: </h4>
+
+                    <a href="javascript:void(0)" class="popup" onclick="CopyURL()">
+                        <span id='CopyTexts' class="SizeTextMidle GreanC">https://TING.com/reg?referalLink=cxfylz7x</span>
+                        <span class="popuptext SizeTextMedium" id="myPopup">Ссылка скопирована</span>
+                    </a>
+
+                    <h5 class="MutedText SizeTextSmall">(ссылка пройдя по которой Ваши друзья попадут на платформу TING, а Вы получаете бонусные вознаграждения от суммы куплинных ими средств, asd ₽ на бонусный счет, и asd ₽ на счет друга.)</h5>
+                </div>
+                {% if data[6] == 0%}
+                <h5 style="margin-top: 1%; background: rgb(138 73 35 / 73%);" class="SizeTextSmall orC">Чтобы продолжить работу с сайтом, необходимо подтвердить свой e-mail. Для этого следуйте инструкциям, который были отправлены Вам на e-mail.</h5>
+                {%endif%}
+            </div>
+        </section>
+
+
+
+        <body id='MainBodyBlock' class="colorBG">
+            <div class="MMBox">
+                <div class="BlockSecond">
+                    <div class="gridBlock">
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">1 of 6</span>
+                                <p class="MutedText SizeTextMidle" style="grid-row: 2; margin: -2%;">
+                                    <span class="orangeC">{{data[17]}}</span> of <span class="orangeC">5</span>
+                                </p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Выберите правильный ответ из шести возможных.</p>
+                                <button onclick="StartGame(1)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
+                                <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">da ₽</span></p>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Самый быстрый способ проверить свои знания.<br>если сдадите 5 тестов подряд получите ad ₽ на счет</p>
+                            </div>
+                        </a>
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Questions</span>
+                                <p class="MutedText SizeTextMidle" style="grid-row: 2; margin: -2%;">
+                                    <span class="orangeC">{{data[21]}}</span> of <span class="orangeC">6</span>
+                                </p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">(Интересные вопросы)</p>
+                                <button onclick="StartGame(2)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
+                                <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">51₽</span></p>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Самый быстрый способ проверить свои знания.<br>если сдадите 5 тестов подряд получите tf на счет</p>
+                            </div>
+                        </a>
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+            <!-- Тут писать код -->
+        </body>
+
+
+    </main>
+
+
+</body>
+
+</html>
+
+
+{% endblock %}
