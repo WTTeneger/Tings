@@ -37,6 +37,23 @@
             document.getElementById('PHelper').style = "animation: PupiFrame 5s";
 
         }
+
+
+        function st(f) {
+            console.log(f.id);
+            icg = document.getElementsByClassName('inpCheckbox');
+            barr = document.getElementsByClassName('inputsB')
+            for (const item of icg) {
+                console.log(item);
+                item.select = false
+            }
+            for (const item of barr) {
+                item.style = ''
+            }
+            document.getElementById(f.id).style = 'background: #1f1e1e;'
+            console.log(document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked);
+            document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked = true
+        }
     </script>
     <script>
         CountErors = 0
@@ -98,61 +115,93 @@
                 }
             });
         };
+
+        function Reg() {
+            popupI = document.getElementById('regblock').getElementsByTagName('input')
+            popupK = document.getElementsByClassName('SSD')
+            console.log(popupI);
+            for (const item of popupI) {
+                item.value = ''
+            }
+            for (const item of popupK) {
+                item.selected = true
+            }
+            document.getElementsByClassName('popupReg')[0].style = 'padding-left: 0%;'
+            document.getElementsByClassName('regpanel')[0].style = 'opacity: 1;'
+        }
+
+        function ClosePopup() {
+            document.getElementsByClassName('popupReg')[0].style = ''
+            document.getElementsByClassName('regpanel')[0].style = 'opacity: 0;'
+
+
+        };
+        $(document).mouseup(function(e) { // событие клика по веб-документу
+            var div = $(".regpanel");
+            if (!div.is(e.target) && div.has(e.target).length === 0 && div[0].style.opacity == 1) {
+                ClosePopup(); // скрываем его
+            }
+
+        });
     </script>
 
-    <div class="regblock">
-        <div class="regpanel">
-            <div class="regpanel_2">
-                <form>
-                    <div class="XKey">
-                        <a onclick="console.log('s')">&#10006;</a>
-                    </div>
-                    <div class="headerForm">
-                        <div class="textf">
-                            <h1>Регистрация</h1>
-                            <h2>Быстро и легко</h2>
+    <div class="popupReg">
+        <div class="regblock" id='regblock'>
+            <div class="regpanel">
+                <div class="regpanel_2">
+                    <form>
+                        <div class="XKey">
+                            <a onclick="ClosePopup()">&#10006;</a>
                         </div>
-                    </div>
+                        <div class="headerForm">
+                            <div class="textf">
+                                <h1>Регистрация</h1>
+                                <h2>Быстро и легко</h2>
+
+                            </div>
+
+                        </div>
+                        <hr style="margin: 0; margin-bottom: 1rem; border-color: #BCBCBC">
 
 
-                    <div class="el_in_line cg-5 rg-5" name='Name_Lastname'>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <input class="inputsR" name="NameTing" type="text" id='NameTing' placeholder="Имя" required>
+                        <div class="el_in_line cg-5 rg-5" name='Name_Lastname'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <input class="inputsR" name="NameTing" type="text" id='NameTing' placeholder="Имя" required>
+                                </div>
+                            </div>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <input class="inputsR" name="LastNameTing" type="text" id='LastNameTing' placeholder="Фамилия" required>
+                                </div>
                             </div>
                         </div>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <input class="inputsR" name="LastNameTing" type="text" id='LastNameTing' placeholder="Фамилия" required>
+
+                        <div class="el_in_line rg-5" name='email'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <input class="inputsR" name="emailTing" type="email" id='emailTing' placeholder="Эл. адрес" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="el_in_line" name='email'>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <input class="inputsR" name="emailTing" type="email" id='emailTing' placeholder="Эл. адрес" required>
+                        <div class="el_in_line rg-5" name='Password'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <input class="inputsR" name="newPasswordTing" type="password" id='newPasswordTing' placeholder="Новый пароль" required>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="el_in_line" name='Password'>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <input class="inputsR" name="passwordTing" type="password" id='passwordTing' placeholder="Новый пароль" required>
-                                <input class="inputsR" name="passwordTing" type="checkbox" id='passwordTing' placeholder="Новый пароль" required>
-                            </div>
+
+                        <div class="textLL">
+                            <h2>Дата рождения</h2>
                         </div>
-                    </div>
-
-                    <div class="textLL">
-                        <h2>Дата рождения</h2>
-                    </div>
-                    <div class="el_in_line cg-1 rg-5" name='birth_date'>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <select class="inputsR inputsSelect" size="1" form name="day[]">
-                                    <option disabled selected>День</option>
+                        <div class="el_in_line cg-1 rg-5" name='birth_date'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <select class="inputsR inputsSelect" size="1" form name="day[]">
+                                    <option class="SSD"  disabled selected>День</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
@@ -185,13 +234,13 @@
                                     <option value="30">30</option>
                                     <option value="31">31</option>
                                 </select>
-                            </div>
+                                </div>
 
-                        </div>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <select class="inputsR inputsSelect" size="1" form name="mounth[]">
-                                    <option disabled selected>Месяц</option>
+                            </div>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <select class="inputsR inputsSelect" size="1" form name="mounth[]">
+                                    <option class="SSD" disabled selected>Месяц</option>
                                     <option value="1">Январь</option>
                                     <option value="2">Февраль</option>
                                     <option value="3">Март</option>
@@ -205,12 +254,12 @@
                                     <option value="11">Ноябрь</option>
                                     <option value="12">Декабрь</option>
                                 </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="el_line">
-                            <div class="el_line_s">
-                                <select class="inputsR inputsSelect" size="1" form name="year[]">
-                                    <option disabled selected>Год</option>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <select class="inputsR inputsSelect" size="1" form name="year[]">
+                                    <option class="SSD" disabled selected>Год</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
                                     <option value="2019">2019</option>
@@ -333,10 +382,47 @@
                                     <option value="1902">1902</option>
                                     <option value="1901">1901</option>
                                 </select>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+
+                        <div class="textLL">
+                            <h2>Пол</h2>
+                        </div>
+                        <div class="el_in_line cg-5 rg-5" name='sex'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <button class="inputsB" name="sexTing" id='sex1' style="position: relative;" type="button" onclick="st(this)">
+                                     <span class="inpSpan">мужчина</span> 
+                                     <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                </button>
+                                </div>
+                            </div>
+
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <button class="inputsB" name="sexTing" id='sex2' style="position: relative;" type="button" onclick="st(this)"> 
+                                   <span  class="inpSpan">Женщина</span>
+                                   <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                </button>
+                                </div>
+                            </div>
+
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <button class="inputsB" name="sexTing" id='sex3' style="position: relative;" type="button" onclick="st(this)"> 
+                                    <span class="inpSpan">Другое</span>
+                                    <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                </button>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="textCC">Нажимая кнопку Регистрация, вы принимаете Условия, Политику использования данных и Политику в отношении файлов cookie. Вы можете получать от нас уведомления, отказаться от которых можно в любой момент.</span>
+                        <div style="text-align: center;" class="rg-5">
+                            <button class="InRegisterButton" style="text-align: center; width: 50%" type="button" id='Create' onclick="CreateAcount()">Создать аккаунт</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -381,7 +467,7 @@
             <hr class="LineHr">
 
 
-            <input class="InRegisterButton" type="button" id='submits' value="Создать аккаунт" onclick="REg()">
+            <input class="InRegisterButton" type="button" value="Создать аккаунт" onclick="Reg()">
         </form>
     </div>
 

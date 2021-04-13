@@ -14,13 +14,57 @@
     column-gap: 1px;
 }
 
+.inpCheckbox {
+    position: absolute;
+    top: 30%;
+    right: 20px;
+    display: none;
+}
+
+.inpSpan {}
+
 
 /* Текст в форме */
+
+.popupReg {
+    transition: 1s;
+    padding-left: 100%;
+    width: 100%;
+    position: fixed;
+}
 
 .inputsSelect option {
     padding-left: 0px;
     overflow: auto;
     font-size: 25px;
+}
+
+.inputsB {
+    height: calc(1.4rem + 1vw);
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-weight: bold;
+    width: 100%;
+    /* Rectangle 7 */
+    background: #464646;
+    border: 2px solid #6F6F6F;
+    box-sizing: border-box;
+    border-radius: 5px;
+    color: #b8b8b8;
+    height: 100vw;
+    min-height: 20px;
+    max-height: 50px;
+    margin-bottom: .4em;
+    font-size: calc(0.6rem + 6 * (100vw - 320px) / 880);
+    transition: .2s;
+}
+
+.inputsB:hover {
+    box-shadow: inset 0px 0 10px 7px rgb(56 56 56);
+    /* box-shadow: 0px 11px 21px 0 #060606; */
 }
 
 .inputsR {
@@ -37,7 +81,7 @@
     border: 2px solid #6F6F6F;
     box-sizing: border-box;
     border-radius: 5px;
-    color: #b8b8b8;
+    color: #ffffff;
     height: 100vw;
     min-height: 20px;
     max-height: 50px;
@@ -73,7 +117,7 @@
 
 .textf {
     text-align: left;
-    padding: 10px 5px 1rem 10px;
+    padding: 10px 5px 0rem 10px;
 }
 
 h1,
@@ -91,6 +135,12 @@ h2 {
     color: #888888;
 }
 
+.textCC {
+    color: #ADADAD;
+    font-weight: bold;
+    font-size: calc(16px + 6 * ((100vw - 320px) / 10000));
+}
+
 
 /* Основа */
 
@@ -103,12 +153,13 @@ h2 {
 .XKey a {
     font-size: calc(16px + 6 * ((100vw + 320px) / 480));
     margin: 0;
-    transition: .5s;
+    transition: .2s;
     cursor: pointer;
+    color: white;
 }
 
 .XKey:hover a {
-    transform: rotate(180deg);
+    color: #8a8a8a;
 }
 
 .regblock {
@@ -120,8 +171,10 @@ h2 {
 }
 
 .regpanel {
+    transition: 1s;
     margin: 0 auto;
     max-width: 1000px;
+    margin-top: 6rem;
     padding: 30px;
 }
 
