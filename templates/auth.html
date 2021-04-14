@@ -53,6 +53,7 @@
             document.getElementById(f.id).style = 'background: #1f1e1e;'
             console.log(document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked);
             document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked = true
+            Asdaw()
         }
     </script>
     <script>
@@ -126,7 +127,7 @@
             for (const item of popupK) {
                 item.selected = true
             }
-            document.getElementsByClassName('popupReg')[0].style = 'padding-left: 0%;'
+            document.getElementsByClassName('popupReg')[0].style = 'padding-left: 0%; position: absolute;'
             document.getElementsByClassName('regpanel')[0].style = 'opacity: 1;'
         }
 
@@ -143,6 +144,58 @@
             }
 
         });
+
+
+
+        function CreateAcount() {
+
+            otv = Asdaw()
+            if (otv == true) {
+                let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/account/create";
+                mass = document.getElementsByClassName('rgs');
+                sex = ''
+                if (mass[8].checked == true) {
+                    sex = 'man'
+                } else if (mass[9].checked == true) {
+                    sex = 'girl'
+                } else if (mass[10].checked == true) {
+                    sex = 'other'
+                }
+                console.log(sex);
+                $.ajax({
+                    type: "POST",
+                    url: urls,
+
+                    data: {
+                        'name': mass[0].value,
+                        'lastName': mass[1].value,
+                        'login': mass[2].value,
+                        'email': mass[3].value,
+                        'password': mass[4].value,
+                        'day': mass[5].value,
+                        'mouth': mass[6].value,
+                        'year': mass[7].value,
+                        'sex': sex,
+                        'timeN': Date.now()
+                    },
+                    async: false,
+                    success: function(data) {
+                        console.log('return --  ', data);
+
+                        if (data['login'] == true) {
+                            document.getElementById('errlogin').style.display = 'block'
+                        }
+                        if (data['mail'] == true) {
+                            document.getElementById('errmail').style.display = 'block'
+                        }
+                        if (data['login'] != true && data['mail'] != true) {
+                            document.location.href = '/email_confirmation'
+                        }
+                    }
+                });
+            }
+
+        }
     </script>
 
     <div class="popupReg">
@@ -167,12 +220,23 @@
                         <div class="el_in_line cg-5 rg-5" name='Name_Lastname'>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <input class="inputsR" name="NameTing" type="text" id='NameTing' placeholder="Имя" required>
+                                    <input class="inputsR rgs" name="NameTing" type="text" id='NameTing' placeholder="Имя" required>
                                 </div>
                             </div>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <input class="inputsR" name="LastNameTing" type="text" id='LastNameTing' placeholder="Фамилия" required>
+                                    <input class="inputsR rgs" name="LastNameTing" type="text" id='LastNameTing' placeholder="Фамилия" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="el_in_line rg-5" name='login'>
+                            <div class="el_line">
+                                <div class="el_line_s">
+                                    <input class="inputsR rgs" name="loginTing" type="login" id='loginTing' placeholder="Логин" required>
+                                    <div class="invalid-feedback LF" id='errlogin'>
+                                        Неверный логин или логин занят.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -180,7 +244,10 @@
                         <div class="el_in_line rg-5" name='email'>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <input class="inputsR" name="emailTing" type="email" id='emailTing' placeholder="Эл. адрес" required>
+                                    <input class="inputsR rgs" name="emailTing" type="email" id='emailTing' placeholder="Эл. адрес" required>
+                                    <div class="invalid-feedback LF" id='errmail'>
+                                        Неверная почта или почта занята.
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -188,7 +255,10 @@
                         <div class="el_in_line rg-5" name='Password'>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <input class="inputsR" name="newPasswordTing" type="password" id='newPasswordTing' placeholder="Новый пароль" required>
+                                    <input class="inputsR rgs" name="newPasswordTing" type="password" id='newPasswordTing' placeholder="Новый пароль" required>
+                                    <div class="LF" id='ts'>
+                                        Длинна должна быть более 8 символов
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -200,7 +270,7 @@
                         <div class="el_in_line cg-1 rg-5" name='birth_date'>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <select class="inputsR inputsSelect" size="1" form name="day[]">
+                                    <select class="inputsR inputsSelect rgs" size="1" form name="day[]">
                                     <option class="SSD"  disabled selected>День</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -239,7 +309,7 @@
                             </div>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <select class="inputsR inputsSelect" size="1" form name="mounth[]">
+                                    <select class="inputsR inputsSelect rgs" size="1" form name="mounth[]">
                                     <option class="SSD" disabled selected>Месяц</option>
                                     <option value="1">Январь</option>
                                     <option value="2">Февраль</option>
@@ -258,7 +328,7 @@
                             </div>
                             <div class="el_line">
                                 <div class="el_line_s">
-                                    <select class="inputsR inputsSelect" size="1" form name="year[]">
+                                    <select class="inputsR inputsSelect rgs" size="1" form name="year[]">
                                     <option class="SSD" disabled selected>Год</option>
                                     <option value="2021">2021</option>
                                     <option value="2020">2020</option>
@@ -394,7 +464,7 @@
                                 <div class="el_line_s">
                                     <button class="inputsB" name="sexTing" id='sex1' style="position: relative;" type="button" onclick="st(this)">
                                      <span class="inpSpan">мужчина</span> 
-                                     <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                     <input type="radio" name="sex" id='sex' class="inpCheckbox rgs" required/>
                                 </button>
                                 </div>
                             </div>
@@ -403,7 +473,7 @@
                                 <div class="el_line_s">
                                     <button class="inputsB" name="sexTing" id='sex2' style="position: relative;" type="button" onclick="st(this)"> 
                                    <span  class="inpSpan">Женщина</span>
-                                   <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                   <input type="radio" name="sex" id='sex' class="inpCheckbox rgs" required/>
                                 </button>
                                 </div>
                             </div>
@@ -412,14 +482,14 @@
                                 <div class="el_line_s">
                                     <button class="inputsB" name="sexTing" id='sex3' style="position: relative;" type="button" onclick="st(this)"> 
                                     <span class="inpSpan">Другое</span>
-                                    <input type="radio" name="sex" id='sex' class="inpCheckbox"/>
+                                    <input type="radio" name="sex" id='sex' class="inpCheckbox rgs" required/>
                                 </button>
                                 </div>
                             </div>
                         </div>
                         <span class="textCC">Нажимая кнопку Регистрация, вы принимаете Условия, Политику использования данных и Политику в отношении файлов cookie. Вы можете получать от нас уведомления, отказаться от которых можно в любой момент.</span>
                         <div style="text-align: center;" class="rg-5">
-                            <button class="InRegisterButton" style="text-align: center; width: 50%" type="button" id='Create' onclick="CreateAcount()">Создать аккаунт</button>
+                            <button class="InRegisterButton qweqwe" type="button" id='Create' onclick="CreateAcount()" disabled>Создать аккаунт</button>
                         </div>
                     </form>
                 </div>
@@ -485,6 +555,64 @@
             }
 
         });
+
+        function Asdaw() {
+            a = checkRegData()
+            console.log(a);
+            if (a == true) {
+                document.getElementById('Create').disabled = false
+            } else {
+                document.getElementById('Create').disabled = true
+            }
+            return a
+        }
+        $('.rgs').keyup(function() {
+            Asdaw()
+        });
+        $('#loginTing').keyup(function() {
+            document.getElementById('errlogin').style.display = 'none'
+        });
+        $('#emailTing').keyup(function() {
+            document.getElementById('errmail').style.display = 'none'
+        });
+
+        function checkRegData() {
+            mass = document.getElementsByClassName('rgs')
+
+            console.log(
+                mass[0].value.length,
+                mass[1].value.length,
+                mass[2].value.length,
+                mass[3].value.length,
+                mass[4].value.length,
+                mass[5].value,
+                mass[6].value,
+                mass[7].value,
+                mass[8].checked,
+                mass[9].checked,
+                mass[10].checked);
+
+            if (mass[4].value.length >= 8) {
+                document.getElementById('ts').style = 'color: #368127;'
+            } else {
+                document.getElementById('ts').style = ''
+            }
+            if (mass[0].value.length > 0 &&
+                mass[1].value.length > 0 &&
+                mass[2].value.length > 0 &&
+                mass[3].value.length > 0 &&
+                mass[4].value.length >= 8 &&
+                mass[5].value != "День" &&
+                mass[6].value != "Месяц" &&
+                mass[7].value != "Год" &&
+                (
+                    mass[8].checked == true ||
+                    mass[9].checked == true ||
+                    mass[10].checked == true
+                )) {
+                return (true)
+            }
+        }
     </script>
 
 </body>

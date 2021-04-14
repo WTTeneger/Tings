@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/auth.css">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/authReg.css">
+    <script src="../static/js/jquery.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="/static/Photo/SiteIcon.png" type="image/png">
+
+    <title>TING - Авторизация</title>
+</head>
+
+
+
+
+<body class="BAuth">
+    <div class="Pupi" id='PHelper'>
+        <h1 id='PHelperText'>Подсказка</h1>
+    </div>
+    <script>
+        Timerss = 0
+
+        function StatePopup(Text) {
+            document.getElementById('PHelperText').innerHTML = Text;
+            Timerss = Date.now();
+            setTimeout(() => {
+                if (Timerss < Date.now() - 5000) {
+                    console.log(Timerss, Date.now() - 5000)
+                    document.getElementById('PHelper').style = "";
+                } else {
+                    console.log('нажал ещё раз', Timerss < Date.now() - 5000)
+                }
+            }, 5000);
+            document.getElementById('PHelper').style = "animation: PupiFrame 5s";
+
+        }
+    </script>
+    <div class="ic">
+        <img src="../static/Photo/TingICons.png" alt="">
+        <h1>Онлайн тесты</h1>
+    </div>
+    <script>
+        function D(el) {
+            b = el.value
+            console.log(b, b.length)
+            if (b.length != 0) {
+                document.getElementById('CodeS').disabled = false
+            } else {
+                console.log('пусто');
+                document.getElementById('CodeS').disabled = true
+            }
+            ColorBlock.style.background = '#' + b
+        }
+
+
+
+        function CheckCode() {
+            code = document.getElementById('codeTing').value
+            let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/account/mailcheck";
+
+            $.ajax({
+                type: "POST",
+                url: urls,
+
+                data: {
+                    'code': code,
+                    'timeN': Date.now()
+                },
+                async: false,
+                success: function(data) {
+                    console.log('return --  ', data);
+                    if (data['error'] == true) {
+                        StatePopup('Проверьте правильность набранного кода')
+                    } else if (data['error'] == false) {
+                        document.location.href = '/main'
+                    }
+                }
+            });
+
+        }
+    </script>
+    <div class="AuthMail" style="border-radius: 10px;">
+        <form onsubmit="" action="">
+            <div class="textC">
+                <h1>Подтвержение mail</h1>
+                <h2>Пожалуйста, введите код, который был отправлен на электронную почту которую вы указали</h2>
+            </div>
+
+            <div class="el_in_line cg-1 rg-5" name='birth_date'>
+                <div class="el_line">
+                    <div class="el_line_s">
+                        <h1 class="sharp">#</h1>
+                    </div>
+                </div>
+                <div class="el_line">
+                    <div class="el_line_s">
+                        <input class="inputsR" oninput="D(this)" name="codeTing" type="email" id='codeTing' placeholder="Код" required>
+                    </div>
+                </div>
+                <div class="el_line">
+                    <div class="el_line_s">
+                        <div class="colorBlock" style="align-items: center; display: flex;">
+
+                            <div id='ColorBlock' class="cb2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="el_in_line" style="justify-content: flex-end; padding: 15px;">
+                <div>
+                    <input class="InLoginButton InLoginButtonss" type="button" id='CodeS' value="Проверить" onclick="CheckCode()" disabled style="width: auto; margin-bottom: 10px;">
+                    <input class="InLoginButton" type="button" value="Выйти" onclick="Exit()" style="width: auto;">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        loginw = document.getElementById('loginTing')
+        passw = document.getElementById('passwordTing')
+        botw = document.getElementById('submits')
+        $('.inputs').keyup(function() {
+            console.log(loginw.value, passw.value)
+            if ((loginw.value != '') && (passw.value != '')) {
+                console.log('value')
+                botw.disabled = false
+            } else {
+                botw.disabled = true
+            }
+
+        });
+    </script>
+
+</body>
+
+</html>

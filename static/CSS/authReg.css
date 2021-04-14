@@ -3,7 +3,7 @@
 }
 
 .rg-5 {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .cg-5 {
@@ -54,7 +54,7 @@
     box-sizing: border-box;
     border-radius: 5px;
     color: #b8b8b8;
-    height: 100vw;
+    height: 10vw;
     min-height: 20px;
     max-height: 50px;
     margin-bottom: .4em;
@@ -82,18 +82,12 @@
     box-sizing: border-box;
     border-radius: 5px;
     color: #ffffff;
-    height: 100vw;
+    height: 10vw;
     min-height: 20px;
     max-height: 50px;
     margin-bottom: .4em;
     font-size: calc(0.6rem + 6 * (100vw - 320px) / 880);
     transition: .2s;
-}
-
-@media (max-width: 400px) {
-    .inputsR {
-        padding-left: 5px;
-    }
 }
 
 .inputsR:focus {
@@ -118,6 +112,52 @@
 .textf {
     text-align: left;
     padding: 10px 5px 0rem 10px;
+}
+
+.sharp {
+    text-align: right;
+    margin: 0;
+    margin-right: 9px;
+    font-size: 50px;
+    line-height: 49px;
+    color: white
+}
+
+.colorBlock {
+    height: 50px;
+    margin-left: 9px;
+    width: 50px;
+    border-radius: 20%;
+    /*     
+    background: rgb(236, 183, 255);
+    background: linear-gradient(90deg, rgba(236, 183, 255, 1) 0%, rgba(29, 0, 25, 1) 100%); */
+}
+
+.cb2 {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    border-radius: 20%;
+    background: white;
+}
+
+.textC {
+    text-align: left;
+    padding: 5px 2rem;
+    padding-bottom: 2rem;
+    margin-top: -2rem;
+}
+
+.textC h1 {
+    font-size: calc(16px + 6 * ((100vw + 320px) / 580));
+    color: #FFAD5B;
+    text-align: center;
+}
+
+.textC h2 {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 1580));
+    text-align: center;
+    color: #DDDDDD;
 }
 
 h1,
@@ -164,7 +204,7 @@ h2 {
 
 .regblock {
     width: 100%;
-    height: 100vh;
+    height: auto;
     background-color: #3a3a3acc;
     position: absolute;
     margin: 0 auto;
@@ -227,4 +267,39 @@ h2 {
 
 .label_div {
     padding-bottom: 2px;
+}
+
+@media (max-width: 400px) {
+    .inputsR {
+        padding-left: 5px;
+    }
+}
+
+.qweqwe {
+    text-align: center;
+    width: 50%;
+}
+
+@media (max-width: 400px) {
+    .regpanel {
+        margin-top: 0rem;
+        padding: 0px;
+        height: 100%;
+    }
+    .regpanel_2 {
+        height: -webkit-fill-available;
+    }
+    .ic {
+        margin-bottom: 2rem;
+    }
+    .regblock {
+        height: 100vh;
+    }
+    .textCC {
+        font-size: .6rem;
+    }
+    .qweqwe {
+        width: 65%;
+        margin-top: 15px;
+    }
 }

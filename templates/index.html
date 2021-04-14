@@ -24,8 +24,8 @@
     
     .MMBox {
         margin-top: 2%;
-        padding-left: 17%;
-        padding-right: 17%;
+        padding-left: 5%;
+        padding-right: 5%;
         margin-left: auto;
         margin-right: auto;
     }
@@ -191,6 +191,57 @@
     .CC:hover {
         text-decoration: tan;
         background: #a32c42;
+    }
+    /*
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    */
+    
+    .one_el_line {
+        -ms-flex-positive: 1;
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        max-width: 100%;
+    }
+    
+    .el_in_line {
+        display: -webkit-box;
+        -webkit-box-align: center;
+        -webkit-box-pack: justify;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        display: -webkit-flex;
+        -webkit-align-items: center;
+        -webkit-justify-content: space-between;
+        -webkit-flex-direction: row;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .el_line {
+        display: inline-block;
+        width: 100%;
+        -ms-flex-item-align: start;
+        align-self: start;
+        -webkit-box-flex: 0;
+        -ms-flex: 0 1 auto;
+        flex: 0 1 auto;
+    }
+    
+    .el_line_s {
+        -webkit-box-flex: 1;
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        max-width: 100%;
     }
 </style>
 <style>
@@ -389,6 +440,18 @@
                     opacity: 1;
                 }
             }
+            
+            .wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                row-gap: 20px;
+                column-gap: 20px;
+                justify-content: center;
+            }
+            
+            .wrapper_div {
+                max-width: 400px;
+            }
         </style>
 
 
@@ -406,8 +469,8 @@
 
                     <h5 class="MutedText SizeTextSmall">(ссылка пройдя по которой Ваши друзья попадут на платформу TING, а Вы получаете бонусные вознаграждения от суммы куплинных ими средств, asd ₽ на бонусный счет, и asd ₽ на счет друга.)</h5>
                 </div>
-                {% if data[6] == 0%}
-                <h5 style="margin-top: 1%; background: rgb(138 73 35 / 73%);" class="SizeTextSmall orC">Чтобы продолжить работу с сайтом, необходимо подтвердить свой e-mail. Для этого следуйте инструкциям, который были отправлены Вам на e-mail.</h5>
+                {% if data[7] == 0%}
+                <h5 style="margin-top: 1%; background: rgb(138 73 35 / 73%);" class="SizeTextSmall orC">Необходимо подтвердить свой e-mail. Для этого следуйте инструкциям, который были отправлены Вам на e-mail.</h5>
                 {%endif%}
             </div>
         </section>
@@ -417,38 +480,27 @@
         <body id='MainBodyBlock' class="colorBG">
             <div class="MMBox">
                 <div class="BlockSecond">
-                    <div class="gridBlock">
-
-                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
-                            <abbr class='CB' hidden>#040404</abbr>
-                            <div class="GridBlockInf">
-                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">1 of 6</span>
-                                <p class="MutedText SizeTextMidle" style="grid-row: 2; margin: -2%;">
-                                    <span class="orangeC">{{data[17]}}</span> of <span class="orangeC">5</span>
-                                </p>
-                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Выберите правильный ответ из шести возможных.</p>
-                                <button onclick="StartGame(1)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
-                                <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">da ₽</span></p>
-                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Самый быстрый способ проверить свои знания.<br>если сдадите 5 тестов подряд получите ad ₽ на счет</p>
-                            </div>
-                        </a>
-
-                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
-                            <abbr class='CB' hidden>#040404</abbr>
-                            <div class="GridBlockInf">
-                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Questions</span>
-                                <p class="MutedText SizeTextMidle" style="grid-row: 2; margin: -2%;">
-                                    <span class="orangeC">{{data[21]}}</span> of <span class="orangeC">6</span>
-                                </p>
-                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">(Интересные вопросы)</p>
-                                <button onclick="StartGame(2)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
-                                <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">51₽</span></p>
-                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Самый быстрый способ проверить свои знания.<br>если сдадите 5 тестов подряд получите tf на счет</p>
-                            </div>
-                        </a>
-
-                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
-                        </a>
+                    <!-- <div class="gridBlock"> -->
+                    <div class="wrapper">
+                        {%for el in tests%}
+                        <!--  -->
+                        <div class="wrapper_div">
+                            <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                                <abbr class='CB' hidden>#040404</abbr>
+                                <div class="GridBlockInf">
+                                    <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">{{el[1]}}</span>
+                                    <p class="MutedText SizeTextMidle" style="grid-row: 2; margin: -2%;">
+                                        <span class="orangeC">{{data[17]}}</span> of <span class="orangeC">{{el[6]}}</span>
+                                    </p>
+                                    <p style="grid-row: 3;" class="mainColor SizeTextMedium">{{el[2]}}</p>
+                                    <button onclick="StartGame(1)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
+                                    <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">{{el[3]}}</span></p>
+                                    <p style=" grid-row: 6;" class="mainColor SizeTextSmall">{{el[4]}}</p>
+                                </div>
+                            </a>
+                        </div>
+                        <!--  -->
+                        {%endfor%}
                     </div>
 
 

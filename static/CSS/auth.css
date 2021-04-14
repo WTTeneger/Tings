@@ -85,8 +85,18 @@ input {
     padding: 2.5rem 0px;
 }
 
+.AuthMail {
+    max-width: 800px;
+    width: 70%;
+    text-align: center;
+    margin: auto auto;
+    background: #2D2D2D;
+    border-radius: 21px;
+}
+
 @media (max-width: 768px) {
-    .Auth {
+    .Auth,
+    .AuthMail {
         width: 80%
     }
 }
@@ -171,6 +181,15 @@ input {
     box-shadow: 0px 0px 10px 0px #b93e3e;
 }
 
+.InLoginButtonss:enabled {
+    transition: .2s;
+    background: #368127;
+}
+
+.InLoginButtonss:enabled:hover {
+    box-shadow: 0px 0px 10px 0px #368127;
+}
+
 .InLoginButton:disabled {
     background: #C9C9C9;
     color: #464545;
@@ -197,6 +216,12 @@ input {
 .InRegisterButton:enabled:hover {
     transition: .3s;
     box-shadow: 0px 0px 210px 0px #368127;
+}
+
+.InRegisterButton:disabled {
+    background: #C9C9C9;
+    color: #464545;
+    cursor: default;
 }
 
 
