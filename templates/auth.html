@@ -66,8 +66,8 @@
                 return (false)
             }
             let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/account/check";
-            let loginw = document.getElementById('loginTing').value
-            let passw = document.getElementById('passwordTing').value
+            let loginw = document.getElementById('loginTingq').value
+            let passw = document.getElementById('passwordTingq').value
             let textS = [loginw, passw];
             ret = ''
             $.ajax({
@@ -508,7 +508,7 @@
     <div class="Auth">
         <form onsubmit="" action="">
             <div id='groupLogin' class="pps">
-                <input class="inputs" name="loginTing" type="text " id='loginTing' placeholder="Электронный адрес или логин" required>
+                <input class="inputs" name="loginTing" type="text " id='loginTingq' placeholder="Электронный адрес или логин" required>
                 <div class="valid-feedback LT">
                     Выглядит неплохо!
                 </div>
@@ -519,7 +519,7 @@
 
 
             <div id='groupPassword' class="pps">
-                <input class="inputs" name="passwordTing" type="password" id='passwordTing' placeholder="Пароль" required>
+                <input class="inputs" name="passwordTing" type="password" id='passwordTingq' placeholder="Пароль" required>
 
                 <div class="valid-feedback LT">
                     Выглядит неплохо!
@@ -542,8 +542,8 @@
     </div>
 
     <script>
-        loginw = document.getElementById('loginTing')
-        passw = document.getElementById('passwordTing')
+        loginw = document.getElementById('loginTingq')
+        passw = document.getElementById('passwordTingq')
         botw = document.getElementById('submits')
         $('.inputs').keyup(function() {
             console.log(loginw.value, passw.value)

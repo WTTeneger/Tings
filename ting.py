@@ -17,11 +17,341 @@ import time
 import string
 import random
 import threading
+
 application = Flask(__name__)
 
 data = ['да', '123', 'да', '123', 'да', '123', 'да', '123', 'да', '123', 'да', '123']
 
 AllClient = {}
+
+
+def thread(func): #Функция запуска нового потока
+    def wrapper(*args, **kwargs):
+        my_thread = threading.Thread(target=func, args=args, kwargs=kwargs)
+        my_thread.start()
+    return wrapper
+
+
+@thread
+def SendMessageCode(ToMail,  Code, name):
+    addr_from = "ting@ru-ting.ru"                # Адресат
+    password  = "TESTPASSMAIL12"                 # Пароль
+    addr_to   = ToMail                            # Получатель
+
+    msg = MIMEMultipart()                               # Создаем сообщение
+    msg['From']    = addr_from                          # Адресат
+    msg['To']      = addr_to                            # Получатель
+    msg['Subject'] = 'TING подтверждение почты'                   # Тема сообщения
+
+    body = ""
+    msg.attach(MIMEText(body, 'plain'))                 # Добавляем в сообщение текст
+
+    urlMail = Code
+    html = f"""\
+    <html>
+        <head></head>
+        <body>
+            <div style="background-color:#f7f7f8;">
+                <div style="margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:0px solid #ffffff;direction:ltr;font-size:0px;padding:20px 0px 20px 0px;padding-bottom:20px;padding-left:0px;padding-right:0px;padding-top:20px;text-align:center;">
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"></table>
+                                    </div>
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px; margin: auto;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="width:150px;">
+                                                                        <a href="https://ru-ting.ru" target="_blank" rel=" noopener noreferrer"><img alt="Logo" height="auto" src="https://firstgirls.ru/TingICons.png" style="border:none;border-radius:0px;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="150"></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"></table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ECECEC;direction:ltr;font-size:0px;padding:40px 0px 40px 0px;padding-bottom:40px;padding-left:0px;padding-right:0px;padding-top:40px;text-align:center;">
+                                    <div class="mj-column-per-100_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 0px 40px;padding-top:0px;padding-right:40px;padding-bottom:0px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:26px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <h1 class="text-build-content_mr_css_attr" style="text-align:center;line-height:40px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;font-weight: normal;"><span style="color:#000;font-size:40px;line-height:40px;font-family:Inter, Helvetica, Arial, sans-serif;"><b>Welcome on board!</b></span></h1></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 10px 40px;padding-top:0px;padding-right:40px;padding-bottom:10px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:18px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Hello {name},<br>Please confirm your email to activate your new account.</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:20px 40px 20px 40px;padding-top:20px;padding-right:40px;padding-bottom:20px;padding-left:40px;word-break:break-word;">
+                                                        <p style="border-top:solid 1px #ECECEC;font-size:1;margin:0px auto;width:100%;"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 40px 10px 40px;padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:16px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:16px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Confirm by using this color code:</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:0px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:24px;color:#000000;">
+                                                            <div style="background:#{urlMail};color: black;box-shadow:inset rgba(0,0,0,0.2) 0 0 1px;margin:0 40px;padding:40px 30px 20px;text-align:center;border-radius: 8px;font-family: Inter, sans-serif;">
+                                                                <div style="font-size: 36px;vertical-align:middle;font-weight:600;text-transform: uppercase;letter-spacing:0.05em;"><span style="user-select: none;"># </span>{urlMail}</div>
+                                                                <div style="margin-top: 20px;color: black;">TING</div>
+                                                            </div>>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:40px 40px 40px 40px;padding-top:40px;padding-right:40px;padding-bottom:40px;padding-left:40px;word-break:break-word;">
+                                                        <p style="border-top:solid 1px #ECECEC;font-size:1;margin:0px auto;width:100%;"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 0px 40px;padding-top:0px;padding-right:40px;padding-bottom:0px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:15px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:15px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Your friends at Coolors. 💙</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:0px solid #ffffff;direction:ltr;font-size:0px;padding:20px 0px 10px 0px;padding-bottom:10px;padding-left:0px;padding-right:0px;padding-top:20px;text-align:center;">
+                                    <div class="mj-column-per-100_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:13px;line-height:20px;font-family:Inter, Helvetica, Arial, sans-serif;">© 2020 TING from @WT_Tini</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </body>
+    </html>
+    """
+
+    
+    msg.attach(MIMEText(html, 'html', 'utf-8'))         # Добавляем в сообщение HTML-фрагмент
+
+    server = smtplib.SMTP('mail.hosting.reg.ru', 587)           # Создаем объект SMTP                     # Включаем режим отладки - если отчет не нужен, строку можно закомментировать
+    server.starttls()                                   # Начинаем шифрованный обмен по TLS
+    server.login(addr_from, password)                   # Получаем доступ
+    server.send_message(msg)                            # Отправляем сообщение
+    server.quit()                                       # Выходим
+
+
+
+
+@thread
+def SendMessageReloginPass(ToMail,  CodeMail, name):
+    addr_from = "ting@ru-ting.ru"                # Адресат
+    password  = "TESTPASSMAIL12"                 # Пароль
+    addr_to   = ToMail                            # Получатель
+
+    msg = MIMEMultipart()                               # Создаем сообщение
+    msg['From']    = addr_from                          # Адресат
+    msg['To']      = addr_to                            # Получатель
+    msg['Subject'] = 'TING сброс пароля'                   # Тема сообщения
+
+    body = ""
+    msg.attach(MIMEText(body, 'plain'))                 # Добавляем в сообщение текст
+    html = f"""\
+    <html>
+    <head></head>
+        <body>
+            <div style="background-color:#f7f7f8;">
+                <div style="margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:0px solid #ffffff;direction:ltr;font-size:0px;padding:20px 0px 20px 0px;padding-bottom:20px;padding-left:0px;padding-right:0px;padding-top:20px;text-align:center;">
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"></table>
+                                    </div>
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;word-break:break-word;">
+                                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px; margin: auto;">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="width:150px;">
+                                                                        <a href="https://ru-ting.ru" target="_blank" rel=" noopener noreferrer"><img alt="Logo" height="auto" src="https://firstgirls.ru/TingICons.png" style="border:none;border-radius:0px;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="150"></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mj-column-per-33-333333333333336_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%"></table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:1px solid #ECECEC;direction:ltr;font-size:0px;padding:40px 0px 40px 0px;padding-bottom:40px;padding-left:0px;padding-right:0px;padding-top:40px;text-align:center;">
+                                    <div class="mj-column-per-100_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 0px 40px;padding-top:0px;padding-right:40px;padding-bottom:0px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:26px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <h1 class="text-build-content_mr_css_attr" style="text-align:center;line-height:40px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;margin-top: 10px;margin-bottom: 10px;font-weight: normal;"><span style="color:#000;font-size:40px;line-height:40px;font-family:Inter, Helvetica, Arial, sans-serif;"><b>Hey stranger!</b></span></h1></div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 10px 40px;padding-top:0px;padding-right:40px;padding-bottom:10px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:18px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Hello {name}.<br></span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:20px 40px 20px 40px;padding-top:20px;padding-right:40px;padding-bottom:20px;padding-left:40px;word-break:break-word;">
+                                                        <p style="border-top:solid 1px #ECECEC;font-size:1;margin:0px auto;width:100%;"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 40px 10px 40px;padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:16px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:16px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Для сброса пароля нажмите на текст снизу</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:0px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:24px;color:#000000;">
+                                                            <div style="background: #555555;;color: black;box-shadow:inset rgba(0,0,0,0.2) 0 0 1px;margin:0 40px;text-align:center;border-radius: 8px;font-family: Inter, sans-serif;">
+                                                                <div style="font-size: 36px;vertical-align:middle;font-weight:600;text-transform: uppercase;letter-spacing:0.05em;"><span style="user-select: none;"></span>
+                                                                    <a href="{CodeMail}" target="_blank" rel=" noopener noreferrer"><img alt="Нажмите для сброса пароля" height="auto" src="https://firstgirls.ru/TingICons.png" style="margin: 0 auto; border:none;border-radius:0px;display:block;outline:none;text-decoration:none;height:52%;width:52%;font-size:13px;" width="150"></a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                </tr>
+                                                <tr>
+                                                    <td style="font-size:0px;padding:40px 40px 40px 40px;padding-top:40px;padding-right:40px;padding-bottom:40px;padding-left:40px;word-break:break-word;">
+                                                        <p style="border-top:solid 1px #ECECEC;font-size:1;margin:0px auto;width:100%;"></p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:0px 40px 0px 40px;padding-top:0px;padding-right:40px;padding-bottom:0px;padding-left:40px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:15px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;line-height: 25px;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:15px;line-height:25px;font-family:Inter, Helvetica, Arial, sans-serif;">Your friends at Coolors. 💙</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin:0px auto;max-width:600px;">
+                    <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="width:100%;">
+                        <tbody>
+                            <tr>
+                                <td style="border:0px solid #ffffff;direction:ltr;font-size:0px;padding:20px 0px 10px 0px;padding-bottom:10px;padding-left:0px;padding-right:0px;padding-top:20px;text-align:center;">
+                                    <div class="mj-column-per-100_mr_css_attr mj-outlook-group-fix_mr_css_attr" style="font-size:0px;text-align:left;direction:ltr;display:inline-block;vertical-align:top;width:100%;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="vertical-align:top;" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" style="font-size:0px;padding:10px 25px;padding-top:0px;padding-bottom:0px;word-break:break-word;">
+                                                        <div style="font-family:Arial, sans-serif;font-size:13px;letter-spacing:normal;line-height:1;text-align:left;color:#000000;">
+                                                            <p class="text-build-content_mr_css_attr" style="text-align: center;margin: 10px 0;margin-top: 10px;margin-bottom: 10px;"><span style="color:#7d7c83;font-size:13px;line-height:20px;font-family:Inter, Helvetica, Arial, sans-serif;">© 2020 TING from @WT_Tini</span></p>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </body>
+    </html>
+    """
+
+    
+    msg.attach(MIMEText(html, 'html', 'utf-8'))         # Добавляем в сообщение HTML-фрагмент
+
+    server = smtplib.SMTP('mail.hosting.reg.ru', 587)             # Создаем объект SMTP                     # Включаем режим отладки - если отчет не нужен, строку можно закомментировать
+    server.starttls()                                   # Начинаем шифрованный обмен по TLS
+    server.login(addr_from, password)                   # Получаем доступ
+    server.send_message(msg)                            # Отправляем сообщение
+    server.quit()                                       # Выходим
+
+
+
+
+
 
 def parse_arg_from_requests(el):
     el = (el.decode("utf-8"))
@@ -37,6 +367,9 @@ def generate_Color_hex():
     r = lambda: random.randint(0,255)
     return('#%02X%02X%02X' % (r(),r(),r()))
     
+
+
+
     
     
 class DB():
@@ -193,6 +526,7 @@ def tingAPI_account(method):
                 'ErrorL': False,
                 'info': None
             }
+            
             if(len(request.form) == 3 and (RZ <= 10 and RZ >= -5)):
                 rt['status'] = True
                 
@@ -229,6 +563,8 @@ def tingAPI_account(method):
             
             if(str(code) == str(codeEmail)):
                 error['error'] = False       
+                print(user_.GetUserDate(user_cashe))
+                user_.login(user_cashe,  user_.GetUserDate(user_cashe)['id_in_db'] )
             else:
                 error['error'] = True
             
@@ -263,12 +599,27 @@ def tingAPI_account(method):
             print(error)
             if(error['login'] == None and error['mail'] == None):
                 a = user_.GetUserDate(user_cashe)
+                
                 a['codeEmail'] = generate_Color_hex()
                 
                 
-                ##
-                ##### Создание аккаунта с флагом (не подтвержден)
-                ##
+                
+                print(req)
+                print(datetime.datetime.now())
+                te = (f"""INSERT INTO users VALUES  
+                        (Null, '{req['name']}', '{req['lastName']}', '{req['login']}', '{req['password']}', '{req['year']}-{req['mouth']}-{req['day']}', '{req['sex']}', '{req['email']}', 0, Null, 0, 'user', '{datetime.datetime.now()}')    
+                        
+                        """)
+                print(te)
+                DB.POST(te) # Создание аккаунта с флагом (не подтвержден)
+                idq = DB.GET('select max(id) from users')[0][0]
+                a['id_in_db'] = idq
+                DB.POST(f""" INSERT INTO userStats VALUES (Null, {idq}, 0, 0, 0, 0, 0) """)
+                
+                
+                #Отправить на почту
+                SendMessageCode(req['email'],str(a['codeEmail']).replace('#',''),req['login'])
+
             return(error)
         
     
@@ -352,6 +703,7 @@ def main():
     user_cashe = CACHE.Check(request)
     lg = user_.GetUserAuth(user_cashe)
     res = ''
+    print('LGG',lg)
     if lg == False:
         res = make_response(redirect('/'))
         res.set_cookie('TING', f'{user_cashe}') 
@@ -363,11 +715,17 @@ def main():
         data = DB.GET(f'select * from users where id = {idUs}')
         stats = DB.GET(f'select * from userStats where fromUser = {idUs}')
         try:     
-            data = data[0]
-            stats = stats[0]
-            res = make_response(render_template('index.html', data=data, login = lg, stats = stats, tests=tests))
+            datad = data[0]
+            statsd = stats[0]
+            print(datad, statsd)
+            print(lg)
+            res = make_response(render_template('index.html', data=datad, login = lg, stats = statsd, tests=tests))
+            
+            print('das')
             res.set_cookie('TING', f'{user_cashe}') 
         except:
+            print('exp')
+            user_.GetUserDate(user_cashe)['auth'] = False
             res = redirect('/')
 
         
@@ -377,6 +735,12 @@ def main():
 @application.errorhandler(404)
 def page_not_found(e):
     return ("errors") #('404.html')
+
+@application.route('/test')
+def test():
+    return render_template('231')
+    return('/data')
+
 
 if __name__=="__main__":
     application.run(debug=True, host='192.168.3.2',port='80')

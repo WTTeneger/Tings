@@ -320,7 +320,7 @@
         <!-- {{login}} -->
         {% if login == True%}
         <div class="row" style="column-gap: 5px;">
-            <button onclick="St()" class="ButtomUR Ber" style="margin-top: 0.2%;" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC ">{{data[9]}}₽</span></button><br>
+            <button onclick="St()" class="ButtomUR Ber" style="margin-top: 0.2%;" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC ">{{data[10]}}₽</span></button><br>
             <button onclick='BR()' class="ButtomUR" id='myBtnExit'>выйти</button>
         </div>
         {%else%}
@@ -482,18 +482,19 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 
     <!-- Overlay content -->
+
     <div class="overlay-content">
         <a href="/main">Главная</a>
         <a href="/news">Новости</a>
         <a href="/video">Видео</a>
         <a href="/InDeveloper">Как это работает</a>
         <a style="margin-bottom: 2%;" href="/about">О нас</a> {% if login == True%}
-        <button onclick="St()" class="ButtomUR" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC">{{data[9]}}₽</span></button>
+        <button onclick="St()" class="ButtomUR" id='myBtn'>{{data[1]}} {{data[2]}} <span class="redC">{{data[10]}}₽</span></button>
         <button onclick='BR()' class="ButtomUR" id='myBtnEx'>выйти</button> {%else%}
         <button class="ButtomUR" onclick="document.location.href = '/auth'">Регистрация / Войти</button> {%endif%}
     </div>
 </div>
-{% if login == 'True' %}
+{% if login == True %}
 <style>
     body {
         font-family: Arial, Helvetica, sans-serif;
