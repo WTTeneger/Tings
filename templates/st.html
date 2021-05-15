@@ -1,0 +1,66 @@
+{% extends 'base.html' %} {% block title %}
+<link rel="shortcut icon" href="/static/Photo/SiteIcon.png" type="image/png">
+<link rel="stylesheet" type="text/css" href="../static/CSS/stat.css">
+<script src="../static/js/stat.js" type="text/javascript"></script>
+
+<title>TING - Статистика</title>
+<!--  -->
+{% endblock %} {% block body %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+<body class="BAuth">
+    <div class="flexbox">
+        <button name="B_1" onclick="Ope(this)" id='OP1' style="padding-left: 10%; padding-right: 10%;" class="ButtomUR bActive">Статистика</button>
+        <button name="B_1" onclick="Ope(this)" id='OP2' style="padding-left: 10%; padding-right: 10%;" class="ButtomUR">Игры</button>
+        <button name="B_1" onclick="Ope(this)" id='OP3' style="padding-left: 10%; padding-right: 10%;" class="ButtomUR">Настройки</button>
+    </div>
+    <div>
+        <div name="B_2" id='OOP1' class="BlockSecond">
+            <div class="flexbox">
+                {%for el in stats%}
+                <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                    <abbr class='CB' hidden>#040404</abbr>
+                    <div class="GridBlockInf">
+                        <span style=" text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">{{el[3]}}</span>
+                        <p class="orangeC SizeTextMidle" style=" margin: -2%;"><span class="mainColor">на</span> TING</p>
+                        <p style=" margin: 0;   font-size: calc(.5em + 1vw);" class="mainColor SizeTextMedium">Колличество побед</p>
+                        <p class="GreanC SizeTextMidle" style="margin: -5%; margin-bottom: 0%;">{{el[1]}}</p>
+                        <p style=" margin: 0;   font-size: calc(.5em + 1vw);" class="mainColor SizeTextMedium">Процент побед</p>
+                        <p class="blueC SizeTextMidle" style="margin: -5%;  margin-bottom: 0%;">{{((100/(el[1] + el[2])) * el[1])|int}}%</p>
+                    </div>
+                </a>
+                {%endfor%}
+            </div>
+        </div>
+
+
+        <div name="B_2" id='OOP3' class="BlockSecond" style="display: none;">
+            <form class="flexbox" onsubmit="" action="">
+                <div id='groupLogin' class="pps">
+                    <h1 class="MutedText SizeTextMidle" style="text-align: left;">Имя</h1>
+                    <input class="inputs" placeholder="{{data[1]}}" disabled>
+                </div>
+
+                <div id='groupPassword' class="pps">
+                    <h1 class="MutedText SizeTextMidle" style="text-align: left;">Фамилия</h1>
+                    <input class="inputs" placeholder="{{data[2]}}" disabled>
+                </div>
+
+                <div id='groupPassword' class="pps">
+                    <h1 class="MutedText SizeTextMidle" style="text-align: left;">email</h1>
+                    <input class="inputs" placeholder="{{data[7]}}" disabled>
+                </div>
+
+            </form>
+            <div style="text-align: center;">
+                <input class="InLoginButton" type="button" value="выйти" onclick='BR()'>
+            </div>
+        </div>
+
+</body>
+
+</html>
+{% endblock %}

@@ -1,5 +1,7 @@
  {% extends 'base.html' %} {% block title %}
 <title>TING · Учи английский</title>
+<link rel="stylesheet" type="text/css" href="../static/CSS/auth.css">
+<!--  -->
 {% endblock %} {% block body %}
 <style>
     .bd-placeholder-img {
@@ -278,6 +280,8 @@
     }
 </script>
 <script>
+    localStorage.setItem('CodeGame', null)
+
     function ContinueGame(data) {
         if (data != "False") {
             begin = new Date().getTime();
@@ -290,45 +294,38 @@
     }
 
     function StartGame(GameId) {
-        function SetGame() {
-            var xmlHttp = null;
-            try {
-                xmlHttp = new XMLHttpRequest();
-            } catch (e) {
-                try {
-                    xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
-                } catch (e) {
-                    xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/game/StartNewGame";
+
+        $.ajax({
+            type: "POST",
+            url: urls,
+
+            data: {
+                'TypeGame': GameId,
+                'timeN': Date.now()
+            },
+            async: false,
+            success: function(data) {
+                console.log('return --  ', data);
+                if (data['status'] == 200) {
+                    if (localStorage.getItem('CodeGame') != 'null' || localStorage.getItem('CodeGame') == null) {
+                        console.log('Есть код');
+                    } else {
+                        console.log('Код создан');
+                        console.log(localStorage.getItem('CodeGame'));
+                        localStorage.setItem('CodeGame', data['data']['CodeGame'])
+
+                        document.location.href = "/game";
+
+                    }
+                } else if (data['status'] == 208) {
+                    console.log('Код уже есть');
+
                 }
             }
-            return xmlHttp;
-        }
-        xmlHttp = SetGame()
-        if (xmlHttp == null) {
-            return;
-        }
-        begin = new Date().getTime();
-
-        url = "/SetGameAPI?GameID=" + GameId + "&Data=" + begin
-
-        xmlHttp.open("POST", url, true);
-        xmlHttp.onreadystatechange = updateTrngDisplayAjaxGame;
-        xmlHttp.send(null);
+        });
     }
 
-    function updateTrngDisplayAjaxGame() {
-        if (xmlHttp.readyState < 4) {
-            console.log("Wait_reg_data...")
-        }
-        if (xmlHttp.readyState == 4) {
-            var waitremain = 600 - (new Date().getTime() - begin);
-            if (waitremain > 0) {
-                setTimeout(printNumberGame, waitremain);
-            } else {
-                printNumberGame();
-            }
-        }
-    }
 
     function printNumberGame() {
         var trngresponse = xmlHttp.responseText;
@@ -376,6 +373,7 @@
 </head>
 
 <body id='MainBodyBlock' class="colorBG">
+
     <main class="colorBG" role="main">
 
         <style>
@@ -483,7 +481,7 @@
                     <!-- <div class="gridBlock"> -->
                     <div class="wrapper">
                         {%for el in tests%}
-                        <!--  -->
+
                         <div class="wrapper_div">
                             <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
                                 <abbr class='CB' hidden>#040404</abbr>
@@ -493,8 +491,8 @@
                                         <span class="orangeC">{{stats[4]}}</span> of <span class="orangeC">{{el[6]}}</span>
                                     </p>
                                     <p style="grid-row: 3;" class="mainColor SizeTextMedium">{{el[2]}}</p>
-                                    <button onclick="StartGame(1)" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
-                                    <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">{{el[3]}}</span></p>
+                                    <button onclick="StartGame({{el[0]}})" style="grid-row: 4; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Начать</button>
+                                    <p class="mainColor SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">цена игры <span class="GreanC">{{el[3]}}👑</span></p>
                                     <p style=" grid-row: 6;" class="mainColor SizeTextSmall">{{el[4]}}</p>
                                 </div>
                             </a>
@@ -502,7 +500,12 @@
                         <!--  -->
                         {%endfor%}
                     </div>
-
+                    <script>
+                        console.log('{{information}}');
+                        if ('{{information}}' != 'None') {
+                            StatePopup('{{information}}');
+                        }
+                    </script>
 
                 </div>
             </div>

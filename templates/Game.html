@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/CSS/auth.css">
+
+    <link rel="stylesheet" type="text/css" href="../static/CSS/game.css">
+    <script src="../static/js/jquery.js" type="text/javascript"></script>
+    <link rel="shortcut icon" href="/static/Photo/SiteIcon.png" type="image/png">
+
+    <title>TING - Авторизация</title>
+</head>
+
+
+
+
+<body class="BAuth">
+
+    <script>
+        function GiveAnswer(e) {
+            let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/game/Check";
+            let code = ''
+            try {
+                code = localStorage.getItem('CodeGame')
+            } catch {
+                code = 'None'
+            }
+            let datas;
+            $.ajax({
+                type: "POST",
+                url: urls,
+
+                data: {
+                    'otv': e.innerHTML,
+                    'code_in_game': code,
+                    'timeN': Date.now()
+                },
+                async: false,
+                success: function(data) {
+
+                    console.log('return -- ', data);
+                    if (data['status'] == 208) {
+                        document.location.href = "/";
+                    }
+                    //
+                    else if (data['status'] == 204) {
+                        console.log('Не верно');
+                        localStorage.setItem('CodeGame', null)
+                        document.location.href = "/";
+                    }
+                    //
+                    else if (data['status'] == 200) {
+                        console.log('верно');
+
+                        q()
+                    }
+                    //
+                    else if (data['status'] == 202) {
+                        console.log('Победа');
+                        localStorage.setItem('CodeGame', null)
+                        document.location.href = "/";
+                    }
+                }
+            });
+        }
+    </script>
+
+    <div class="Pupi" id='PHelper'>
+        <h1 id='PHelperText'>Подсказка</h1>
+    </div>
+    <script>
+        Timerss = 0
+
+        function StatePopup(Text) {
+            document.getElementById('PHelperText').innerHTML = Text;
+            Timerss = Date.now();
+            setTimeout(() => {
+                if (Timerss < Date.now() - 5000) {
+                    console.log(Timerss, Date.now() - 5000)
+                    document.getElementById('PHelper').style = "";
+                } else {
+                    console.log('нажал ещё раз', Timerss < Date.now() - 5000)
+                }
+            }, 5000);
+            document.getElementById('PHelper').style = "animation: PupiFrame 5s";
+
+        }
+
+
+        function st(f) {
+            console.log(f.id);
+            icg = document.getElementsByClassName('inpCheckbox');
+            barr = document.getElementsByClassName('inputsB')
+            for (const item of icg) {
+                console.log(item);
+                item.select = false
+            }
+            for (const item of barr) {
+                item.style = ''
+            }
+            document.getElementById(f.id).style = 'background: #1f1e1e;'
+            console.log(document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked);
+            document.getElementById(f.id).getElementsByClassName('inpCheckbox')[0].checked = true
+            Asdaw()
+        }
+    </script>
+    <div class="ic" style="margin-bottom: 4rem;">
+        <img src="../static/Photo/TingICons.png" alt="">
+        <h1>Онлайн тесты</h1>
+    </div>
+    <div style="text-align: center;">
+        <samp class="CVFont mainColor SizeTextBig">Questions</samp>
+        <p class="SizeTextMedium MutedText">(Интересные вопросы)</p>
+    </div>
+
+    <div style="padding-left: 15%; padding-right: 15%; padding-bottom: 5vh;">
+        <div class="progress" style="height: 20px;">
+            <div class="progress-bar bg-info" role="progressbar" name='progressbar' style="width: 0%; font-weight: bold;">0</div>
+        </div>
+    </div>
+
+
+
+
+    <div style="text-align: center; padding-left: 15%; padding-right: 15%;">
+        <samp id='question' class="CVFont mainColor SizeTextBig">{{Question}}</samp>
+        <div class="Button_div">
+
+            <!--  -->
+            {% for obj in Questions_Var%}
+            <button onclick="GiveAnswer(this)" name='VR' style="padding-left: 10%; padding-right: 10%;" class="ButtomGame SizeTextMidle">{{obj}}</button>
+            <!--  -->
+            {%endfor%}
+        </div>
+    </div>
+    <script>
+        function setQuestions(question, q_v) {
+            console.log(question, q_v);
+            let a = 0
+            document.getElementById('question').innerHTML = question
+            for (item of document.getElementsByName('VR')) {
+                item.innerHTML = q_v[a]
+                a += 1
+            }
+        }
+    </script>
+    <script>
+        function q() {
+            let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/game/get_question";
+            let code = ''
+            try {
+                code = localStorage.getItem('CodeGame')
+            } catch {
+                code = 'None'
+            }
+
+            $.ajax({
+                type: "POST",
+                url: urls,
+
+                data: {
+                    'code_in_game': code,
+                    'timeN': Date.now()
+                },
+                async: false,
+                success: function(data) {
+                    console.log('return -- ', data);
+                    if (data['status'] == 200) {
+                        setQuestions(data['data']['question'], data['data']['questions_Var'])
+                        console.log(data);
+                        p = (100 / data['data']['count_to_win']) * data['data']['count_true']
+                        console.log(p);
+                        document.getElementsByName('progressbar')[0].style.width = p + '%'
+                        document.getElementsByName('progressbar')[0].innerHTML = data['data']['count_true']
+                    } else {
+                        document.location.href = "/";
+                    }
+
+                }
+            });
+
+        }
+        q()
+    </script>
+</body>
+
+</html>

@@ -3,6 +3,10 @@
     margin: 0;
 }
 
+.a:hover {
+    color: #368127;
+}
+
 .ic {
     text-align: center;
     margin: 0 auto;
@@ -266,6 +270,7 @@ input {
 }
 
 .Pupi {
+    z-index: 20;
     top: -50vw;
     position: absolute;
     background: #F5BB62;

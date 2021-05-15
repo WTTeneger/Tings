@@ -1,0 +1,105 @@
+.ButtonFalse {
+    box-shadow: 0 0 20px 15px #b63939;
+}
+
+.ButtonTrue {
+    box-shadow: 0 0 20px 15px #3ab53d66;
+}
+
+.ButtonBr {
+    grid-gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    display: grid;
+}
+
+.ButtomGame {
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    border: 2px solid transparent;
+    padding: .375rem .75rem;
+    line-height: 1.5;
+    border-radius: .75rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    color: #ffffff;
+    background: #333333;
+    border-color: #01f9b798;
+    width: 70%;
+    flex: 1 1 0px;
+    font-size: calc(1em + 1vw);
+}
+
+.progress {
+    display: -ms-flexbox;
+    display: flex;
+    height: 1rem;
+    overflow: hidden;
+    line-height: 0;
+    font-size: .75rem;
+    background-color: #e9ecef;
+    border-radius: .25rem;
+}
+
+.bg-info {
+    background-color: #17a2b8!important;
+}
+
+.progress-bar {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    background-color: #007bff;
+    transition: width .6s ease;
+}
+
+.ButtomGame:hover {
+    background: #161616;
+}
+
+.PBar {
+    width: 100%;
+    background: bottom;
+}
+
+.Button_div {
+    margin: 0 auto;
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    column-gap: 10px;
+    justify-content: center;
+    /*  */
+    align-content: stretch;
+    align-items: stretch;
+    padding-top: 5%
+}
+
+.CVFont {
+    color: rgb(0 0 0 / 15%);
+    font-family: "VK Sans Display";
+}
+
+.SizeTextBig {
+    font-size: calc(1em + 1vw);
+}
+
+.mainColor {
+    text-align: center;
+    color: #ffffffdb;
+    font-weight: bold;
+}

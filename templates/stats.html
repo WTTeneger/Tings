@@ -1,626 +1,644 @@
-
-{% extends 'base.html' %}
-
-{% block title %}
+ {% extends 'base.html' %} {% block title %}
 <title>TING · Учи английский</title>
-{% endblock %}
-
-
-{% block body %}
+{% endblock %} {% block body %}
 <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-  }
-  .StartTextMain{
-    line-height: 63px;
-    text-align: left;
-  }
-  .MMBox{
-    margin-top: 2%;
-    padding-left:  17%;
-    padding-right: 17%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .tabs-list__items {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    max-width: 100vw;
-  }
-  .tabs-list__item {
-    flex-shrink: 0;
-    margin-bottom: 10px;
-    margin-right: 2%;
-  }
-  .uiTab:hover{
-    border-color: #666666;
-    background: #131313;
-    color: #01f9b7;
     
-  }
-  .uiTab {
-      margin: 0;
-      padding: 0;
-      border-radius: 0;
-      color: inherit;
-      font: inherit;
-      background-color: transparent;
-      -webkit-tap-highlight-color: transparent;
-      display: inline-block;
-      border: 1px solid #000;
-      border-radius: 100px;
-      color: #000;
-      line-height: 1;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color .3s,color .3s;
-      padding: 18px 24px;
-      font-weight: 500;
-      font-size: 18px;
-      border-color:#01f9b798;
-      
-  }
-
-  .uiTab2:hover{
-    border-color: #666666;
-    background: #131313;
-    color: #01f9b7;
-    
-  }
-  .uiTab2 {
-      margin: 0;
-      padding: 0;
-      border-radius: 0;
-      color: inherit;
-      background-color: transparent;
-      -webkit-tap-highlight-color: transparent;
-      display: inline-block;
-      border-radius: 100px;
-      line-height: 1;
-      text-align: center;
-      cursor: pointer;
-      transition: background-color .3s,color .3s;
-      padding: 18px 24px;
-      border-color:#01f9b798;
-      background: #626262;
-      border-radius: 0.55rem; 
-      font-size: 120%;
-      font-weight: bold;
-  }
-
-
-  .BlockFirst{
-    margin-bottom: 10%;
-  }
-  
-  .gridBlock{
-    position: relative;
-    display: grid;
-    grid-gap: 10px;
-    margin-bottom: 2%;
-    
-  }
-  
-  @media (min-width: 768px){
-    .gridBlock{
-      grid-gap: 20px;
-      grid-template-columns: repeat(2,1fr);
-      position: relative;
-      display: grid;
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
     }
-  }
-  @media (min-width: 1280px){
+    
+    .StartTextMain {
+        line-height: 63px;
+        text-align: left;
+    }
+    
+    .MMBox {
+        margin-top: 2%;
+        padding-left: 17%;
+        padding-right: 17%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .tabs-list__items {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        max-width: 100vw;
+    }
+    
+    .tabs-list__item {
+        flex-shrink: 0;
+        margin-bottom: 10px;
+        margin-right: 2%;
+    }
+    
+    .uiTab:hover {
+        border-color: #666666;
+        background: #131313;
+        color: #01f9b7;
+    }
+    
+    .uiTab {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        font: inherit;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        border: 1px solid #000;
+        border-radius: 100px;
+        color: #000;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .3s, color .3s;
+        padding: 18px 24px;
+        font-weight: 500;
+        font-size: 18px;
+        border-color: #01f9b798;
+    }
+    
+    .uiTab2:hover {
+        border-color: #666666;
+        background: #131313;
+        color: #01f9b7;
+    }
+    
+    .uiTab2 {
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        color: inherit;
+        background-color: transparent;
+        -webkit-tap-highlight-color: transparent;
+        display: inline-block;
+        border-radius: 100px;
+        line-height: 1;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color .3s, color .3s;
+        padding: 18px 24px;
+        border-color: #01f9b798;
+        background: #626262;
+        border-radius: 0.55rem;
+        font-size: 120%;
+        font-weight: bold;
+    }
+    
+    .BlockFirst {
+        margin-bottom: 10%;
+    }
+    
     .gridBlock {
-        grid-gap: 30px;
-        grid-template-columns: repeat(3,1fr);
+        position: relative;
+        display: grid;
+        grid-gap: 10px;
+        margin-bottom: 2%;
     }
-  }
-  
-  .CC{
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .55rem;
-    padding: 3%;
-    min-width: 100%;
-    min-height: 100%;
-    transition: background-color .3s,color .3s;
-  }
-  .BLackC{
-    color: #181818;
-    font-weight: bold;
-  }
-  .GrawC{
-    color: #3a3a3a;
-    font-weight: 500;
-  }
-  .DText{
-    right: 1%;
-    bottom: 0;
-    position: absolute;
-  }
-  .DPhoto{
-    top: 0;
-    right: 1%;
-    position: absolute;
-    width: 25%;
-  }
-  .PLast{
-    margin-bottom: 7%;
-  }
-  .GridBlockInf{
-    display: grid;
-    grid-gap: 8px;
-    grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
-    grid-template-rows: min-content 1fr min-content; 
-    height: 100%;
-    min-height: 130px;
-  }
-  .card__pic{
-    width: 100%;
-    height: 100%;
-    -o-object-fit: cover;
-    object-fit: cover;
-    max-width: 100%;
-  }
-
-
-  .CC:hover{
-    text-decoration: tan;
-    background:#a32c42;
-  }
-
-
+    
+    @media (min-width: 768px) {
+        .gridBlock {
+            grid-gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            position: relative;
+            display: grid;
+        }
+    }
+    
+    @media (min-width: 1280px) {
+        .gridBlock {
+            grid-gap: 30px;
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+    
+    .CC {
+        position: relative;
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        word-wrap: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        border: 1px solid rgba(0, 0, 0, .125);
+        border-radius: .55rem;
+        padding: 3%;
+        min-width: 100%;
+        min-height: 100%;
+        transition: background-color .3s, color .3s;
+    }
+    
+    .BLackC {
+        color: #181818;
+        font-weight: bold;
+    }
+    
+    .GrawC {
+        color: #3a3a3a;
+        font-weight: 500;
+    }
+    
+    .DText {
+        right: 1%;
+        bottom: 0;
+        position: absolute;
+    }
+    
+    .DPhoto {
+        top: 0;
+        right: 1%;
+        position: absolute;
+        width: 25%;
+    }
+    
+    .PLast {
+        margin-bottom: 7%;
+    }
+    
+    .GridBlockInf {
+        display: grid;
+        grid-gap: 8px;
+        grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
+        grid-template-rows: min-content 1fr min-content;
+        height: 100%;
+        min-height: 130px;
+    }
+    
+    .card__pic {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        max-width: 100%;
+    }
+    
+    .CC:hover {
+        text-decoration: tan;
+        background: #a32c42;
+    }
 </style>
 <style>
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
     }
-  }
+    
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+        }
+    }
 </style>
 <script type="text/javascript">
-  let bgount = ''
-  function Cl(t){
-    bgount = t.style.background
-    //document.getElementById('s').textContent
-    try{
-      let Col = (t.getElementsByClassName('CB')[0].textContent)
-      t.style.background = Col;
-    }catch{}
-    
-  }
-  function Ol(t){
-    t.style.background = bgount;
-  }
+    let bgount = ''
+
+    function Cl(t) {
+        bgount = t.style.background
+            //document.getElementById('s').textContent
+        try {
+            let Col = (t.getElementsByClassName('CB')[0].textContent)
+            t.style.background = Col;
+        } catch {}
+
+    }
+
+    function Ol(t) {
+        t.style.background = bgount;
+    }
 </script>
 <script>
-  function EndPopup() {
-    var popup = document.getElementById("myPopup");
-    popup.classList.remove("show");
-  }
-  function CopyURL(){
-      // Create a "hidden" input
-    var aux = document.createElement("input");
+    function EndPopup() {
+        var popup = document.getElementById("myPopup");
+        popup.classList.remove("show");
+    }
 
-    // Assign it the value of the specified element
-    aux.setAttribute("value", document.getElementById('CopyTexts').innerHTML);
+    function CopyURL() {
+        // Create a "hidden" input
+        var aux = document.createElement("input");
 
-    // Append it to the body
-    document.body.appendChild(aux);
+        // Assign it the value of the specified element
+        aux.setAttribute("value", document.getElementById('CopyTexts').innerHTML);
 
-    // Highlight its content
-    aux.select();
+        // Append it to the body
+        document.body.appendChild(aux);
 
-    // Copy the highlighted text
-    document.execCommand("copy");
+        // Highlight its content
+        aux.select();
 
-    // Remove it from the body
-    document.body.removeChild(aux);
-    
+        // Copy the highlighted text
+        document.execCommand("copy");
 
-    
-    var popup = document.getElementById("myPopup");
-    popup.classList.toggle("show");
-    setTimeout(EndPopup, 5000);
+        // Remove it from the body
+        document.body.removeChild(aux);
 
-  
-  }
+
+
+        var popup = document.getElementById("myPopup");
+        popup.classList.toggle("show");
+        setTimeout(EndPopup, 5000);
+
+
+    }
 </script>
-  <!-- Custom styles for this template -->
+<!-- Custom styles for this template -->
 </head>
-<body id = 'MainBodyBlock' class="colorBG">
-<main class="colorBG" role="main">
 
-<style>
-  /* Popup container */
-  .popup {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
+<body id='MainBodyBlock' class="colorBG">
+    <main class="colorBG" role="main">
 
-  /* The actual popup (appears on top) */
-  .popup .popuptext {
-    visibility: hidden;
-    width: 160px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 8px 0;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -80px;
-  }
-
-  /* Popup arrow */
-  .popup .popuptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-  }
-
-  /* Toggle this class when clicking on the popup container (hide and show the popup) */
-  .popup .show {
-    visibility: visible;
-    -webkit-animation: fadeIn 1s;
-    animation: fadeIn 1s
-  }
-
-  /* Add animation (fade in the popup) */
-  @-webkit-keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity: 1;}
-  }
-
-  @keyframes fadeIn {
-    from {opacity: 0;}
-    to {opacity:1 ;}
-  }
-  .GBlock{
-    grid-gap: 20px;
-    grid-template-columns: repeat(1,1fr);
-    position: relative;
-    display: grid;
-    margin-bottom: 2%;
-  }
-  .gridBV{
-    display: grid;
-    grid-gap: 10px;
-    grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
-    grid-template-rows: min-content 1fr min-content;
-    height: 100%;
-    min-height: 130px;
-  }
-  .form-control-settings {
-    display: block;
-    width: 100%;
-    height: calc(1.5em + .75rem + 2px);
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #00ffba;
-    background-color: rgb(53, 53, 53);
-    background-clip: padding-box;
-    border-radius: .25rem;
-    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-  }
-  .MargFor{
-    margin-left: 5%;
-    margin-right: 5%;
-  }
-</style>
-
-
-<section class="text-center colorBG">
-  <div class="container colorBG">
-    <h1 class="mainColor SizeTextBig">Ваша статистика</h1>
-    <div style="display: none;">
-      <h4 class="mainColor SizeTextMidle">Ваша реферальная ссылка: </h4>
-      
-
-      <a href="javascript:void(0)" class="popup" onclick="CopyURL()">
-        <span id='CopyTexts' class="SizeTextMidle GreanC">https://TING.com/reg?referalLink=cxfylz7x</span>
-        <span class="popuptext SizeTextMedium" id="myPopup">Ссылка скопирована</span>
-      </a>
-
-      <h5 class="MutedText SizeTextSmall">(ссылка пройдя по которой Ваши друзья попадут на платформу TING, а Вы получаете бонусные вознаграждения от суммы куплинных ими средств,  {{AS[1]}} ₽ на бонусный счет, и {{AS[2]}} ₽ на счет друга.)</h5>
-      {% if data[6] == 0%}
-        <h5 style="margin-top: 1%; background: rgb(138 73 35 / 73%);" class="SizeTextSmall orC">Чтобы продолжить работу с сайтом, необходимо подтвердить свой e-mail. Для этого следуйте инструкциям, который были отправлены Вам на e-mail.</h5>
-      {%endif%}
-    </div>
-  </div>
-</section>
+        <style>
+            /* Popup container */
+            
+            .popup {
+                position: relative;
+                display: inline-block;
+                cursor: pointer;
+            }
+            /* The actual popup (appears on top) */
+            
+            .popup .popuptext {
+                visibility: hidden;
+                width: 160px;
+                background-color: #555;
+                color: #fff;
+                text-align: center;
+                border-radius: 6px;
+                padding: 8px 0;
+                position: absolute;
+                z-index: 1;
+                bottom: 125%;
+                left: 50%;
+                margin-left: -80px;
+            }
+            /* Popup arrow */
+            
+            .popup .popuptext::after {
+                content: "";
+                position: absolute;
+                top: 100%;
+                left: 50%;
+                margin-left: -5px;
+                border-width: 5px;
+                border-style: solid;
+                border-color: #555 transparent transparent transparent;
+            }
+            /* Toggle this class when clicking on the popup container (hide and show the popup) */
+            
+            .popup .show {
+                visibility: visible;
+                -webkit-animation: fadeIn 1s;
+                animation: fadeIn 1s
+            }
+            /* Add animation (fade in the popup) */
+            
+            @-webkit-keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            .GBlock {
+                grid-gap: 20px;
+                grid-template-columns: repeat(1, 1fr);
+                position: relative;
+                display: grid;
+                margin-bottom: 2%;
+            }
+            
+            .gridBV {
+                display: grid;
+                grid-gap: 10px;
+                grid-template-rows: -webkit-min-content 1fr -webkit-min-content;
+                grid-template-rows: min-content 1fr min-content;
+                height: 100%;
+                min-height: 130px;
+            }
+            
+            .form-control-settings {
+                display: block;
+                width: 100%;
+                height: calc(1.5em + .75rem + 2px);
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #00ffba;
+                background-color: rgb(53, 53, 53);
+                background-clip: padding-box;
+                border-radius: .25rem;
+                transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+            }
+            
+            .MargFor {
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+        </style>
 
 
-
-<body id = 'MainBodyBlock' class="colorBG">
-  <div style="margin-top: 2%; text-align: center;">
-    <button id='mb' onclick="Ope('m')" style="padding-left: 10%; padding-right: 10%;  " class="ButtomUR bActive">Деньги</button>
-    <button id='sb' onclick="Ope('s')" style="padding-left: 10%; padding-right: 10%; margin-left: 3%;" class="ButtomUR">Игры</button>
-    <button id='ssb' onclick="Ope('set')" style="padding-left: 10%; padding-right: 10%; margin-left: 3%;" class="ButtomUR">Настройки</button>
-  </div>
-  
-  <div class="MMBox">
-    <div id='money' class="BlockSecond">
-      <div class="gridBlock">
-
-        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)"  style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Баланс на</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма на вашем счету для вывода.</p>          
-            <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">{{data[8] - data[10]}} ₽</p>
-            <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Пополнить</button>
-            <p style=" grid-row: 6;" class="mainColor SizeTextSmall">минимальная сумма пополнение составляет 50 руб</p>
-          </div>
-        </a>
-  
-
-        <a href="javascript:void(0)"  onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Заработано на</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма, полученная от пройденых тестов</p>
-            <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[11]}}   ₽</p>
-            {% if data[7] == 0.0 %}            
-              <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат</p>
-            {%endif%}
-          </div>
-        </a>
-      
-
-        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)"  style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Бонусы на счету</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Бонусы вы можете потратить на игры</p>          
-            <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">{{data[10]}} ₽</p>
-            <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Активировать PromoCode</button>
-            <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Получить бонусы можно из (промокодов и акция)</p>
-          </div>
-        </a>
+        <section class="text-center colorBG">
+            <div class="container colorBG">
+                <h1 class="mainColor SizeTextBig">Ваша статистика</h1>
+                <div style="display: none;">
+                    <h4 class="mainColor SizeTextMidle">Ваша реферальная ссылка: </h4>
 
 
-        <a href="javascript:void(0)"  onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Партнерская программа</span> 
-            <p class="mainColor SizeTextMedium" style="grid-row: 5; margin: -2%;">Общая сумма средств, заработанных в партнерской программе TING</p>
+                    <a href="javascript:void(0)" class="popup" onclick="CopyURL()">
+                        <span id='CopyTexts' class="SizeTextMidle GreanC">https://TING.com/reg?referalLink=cxfylz7x</span>
+                        <span class="popuptext SizeTextMedium" id="myPopup">Ссылка скопирована</span>
+                    </a>
 
-            <p style="grid-row: 8;" class="blueC SizeTextMidle">{{data[12]}} ₽</p>
-            <p style=" grid-row: 12;" class="mainColor SizeTextSmall">При пополнение баланса приглашённых людей вы получаете 15% от их пополнений на лицевой счет</div>
-        </a>
-
-
-        <a href="javascript:void(0)"  onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Всего выведено c</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма выведенных Вами средств</p>
-            <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[9]}} ₽</p>
-            <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат (если по нулям) ничего не написано (если выплаты были)</p>
-          </div>
-        </a>
+                    <h5 class="MutedText SizeTextSmall">(ссылка пройдя по которой Ваши друзья попадут на платформу TING, а Вы получаете бонусные вознаграждения от суммы куплинных ими средств, {{AS[1]}} ₽ на бонусный счет, и {{AS[2]}} ₽ на счет друга.)</h5>
+                    {% if data[6] == 0%}
+                    <h5 style="margin-top: 1%; background: rgb(138 73 35 / 73%);" class="SizeTextSmall orC">Чтобы продолжить работу с сайтом, необходимо подтвердить свой e-mail. Для этого следуйте инструкциям, который были отправлены Вам на e-mail.</h5>
+                    {%endif%}
+                </div>
+            </div>
+        </section>
 
 
-        <a href="javascript:void(0)"  onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Общая прибыль на</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Доход в совокупности</p>
-            <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[16]}} ₽</p> <!-- ! data 13  последний счёт -->
-            <p style=" grid-row: 6;" class="mainColor SizeTextSmall">вычисляется из партнерской программы + заработанных на вопросе</p>
-          </div>
-        </a>
 
-      </div>
+        <body id='MainBodyBlock' class="colorBG">
+            <div>
+                <button id='mb' onclick="Ope('m')" style="padding-left: 10%; padding-right: 10%;  " class="ButtomUR bActive">Деньги</button>
+                <button id='sb' onclick="Ope('s')" style="padding-left: 10%; padding-right: 10%; margin-left: 3%;" class="ButtomUR">Игры</button>
+                <button id='ssb' onclick="Ope('set')" style="padding-left: 10%; padding-right: 10%; margin-left: 3%;" class="ButtomUR">Настройки</button>
+            </div>
 
-      <!-- 
+            <div class="MMBox">
+                <div id='money' class="BlockSecond">
+                    <div class="gridBlock">
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Баланс на</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма на вашем счету для вывода.</p>
+                                <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">{{data[8] - data[10]}} ₽</p>
+                                <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Пополнить</button>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">минимальная сумма пополнение составляет 50 руб</p>
+                            </div>
+                        </a>
+
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Заработано на</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма, полученная от пройденых тестов</p>
+                                <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[11]}} ₽</p>
+                                {% if data[7] == 0.0 %}
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат</p>
+                                {%endif%}
+                            </div>
+                        </a>
+
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Бонусы на счету</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Бонусы вы можете потратить на игры</p>
+                                <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">{{data[10]}} ₽</p>
+                                <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Активировать PromoCode</button>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Получить бонусы можно из (промокодов и акция)</p>
+                            </div>
+                        </a>
+
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Партнерская программа</span>
+                                <p class="mainColor SizeTextMedium" style="grid-row: 5; margin: -2%;">Общая сумма средств, заработанных в партнерской программе TING</p>
+
+                                <p style="grid-row: 8;" class="blueC SizeTextMidle">{{data[12]}} ₽</p>
+                                <p style=" grid-row: 12;" class="mainColor SizeTextSmall">При пополнение баланса приглашённых людей вы получаете 15% от их пополнений на лицевой счет</div>
+                        </a>
+
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Всего выведено c</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма выведенных Вами средств</p>
+                                <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[9]}} ₽</p>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат (если по нулям) ничего не написано (если выплаты были)</p>
+                            </div>
+                        </a>
+
+
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Общая прибыль на</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Доход в совокупности</p>
+                                <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[16]}} ₽</p>
+                                <!-- ! data 13  последний счёт -->
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">вычисляется из партнерской программы + заработанных на вопросе</p>
+                            </div>
+                        </a>
+
+                    </div>
+
+                    <!-- 
       <div>
         <p style="text-align: center;"><a style="width: 78%; text-decoration: none;" class="SizeTextMidle uiTab2">показать ещё 11 игр</a></p>
       </div>
        -->
 
-    </div>
+                </div>
 
-    <div id='stats' class="BlockSecond" style="display: none;">
-      <div class="gridBlock">
-        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)"  style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">1 из 6 на</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <span style="grid-row: 3;" class="mainColor SizeTextMedium">Колличество побед:</span>     
-            <span id='AllWin' style="grid-row: 4;"class="GreanC SizeTextMidle">{{data[16]}}</span>     
-            <span style="grid-row: 5;" class="mainColor SizeTextMedium">Колличество выйгранных серий:</span> 
-            <span id='StackWin' style="grid-row: 6;"class="orangeC SizeTextMidle">{{data[15]}}</span>  
-            <span style="grid-row: 7;" class="mainColor SizeTextMedium">Процент побед</span> 
-            <span id='PWin' style="grid-row: 8;"class="redC SizeTextMidle">0</span>  
-          </div>
-        </a>
-        <a href="javascript:void(0)"  onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Заработано на</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма, полученная от пройденых тестов</p>
-            <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[13]}}   ₽</p>
-            {% if data[7] == 0.0 %}            
-              <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат</p>
-            {%endif%}
-          </div>
-        </a>
-      
-
-        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)"  style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="GridBlockInf">
-            <span style="grid-row: 1; text-align: center; ; margin: -2%;"  class="mainColor SizeTextMidle">Бонусы на счету</span> 
-            <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
-            <p style="grid-row: 3;" class="mainColor SizeTextMedium">Бонусы вы можете потратить на игры</p>          
-            <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">бонусы ₽</p>
-            <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Активировать PromoCode</button>
-            <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Получить бонусы можно из (промокодов и акция)</p>
-          </div>
-        </a>
+                <div id='stats' class="BlockSecond" style="display: none;">
+                    <div class="gridBlock">
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">1 из 6 на</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <span style="grid-row: 3;" class="mainColor SizeTextMedium">Колличество побед:</span>
+                                <span id='AllWin' style="grid-row: 4;" class="GreanC SizeTextMidle">{{data[16]}}</span>
+                                <span style="grid-row: 5;" class="mainColor SizeTextMedium">Колличество выйгранных серий:</span>
+                                <span id='StackWin' style="grid-row: 6;" class="orangeC SizeTextMidle">{{data[15]}}</span>
+                                <span style="grid-row: 7;" class="mainColor SizeTextMedium">Процент побед</span>
+                                <span id='PWin' style="grid-row: 8;" class="redC SizeTextMidle">0</span>
+                            </div>
+                        </a>
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Заработано на</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Общая сумма, полученная от пройденых тестов</p>
+                                <p class="redC SizeTextMidle" style="margin: 2%; grid-row: 5; margin-bottom: 2%;">{{data[13]}} ₽</p>
+                                {% if data[7] == 0.0 %}
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">У Вас нет выплат</p>
+                                {%endif%}
+                            </div>
+                        </a>
 
 
-      </div>
-    </div>
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="GridBlockInf">
+                                <span style="grid-row: 1; text-align: center; ; margin: -2%;" class="mainColor SizeTextMidle">Бонусы на счету</span>
+                                <p class="orangeC SizeTextMidle" style="grid-row: 2; margin: -2%;">TING</p>
+                                <p style="grid-row: 3;" class="mainColor SizeTextMedium">Бонусы вы можете потратить на игры</p>
+                                <p class="GreanC SizeTextMidle" style="margin: 2%; grid-row: 4; margin-bottom: 2%;">бонусы ₽</p>
+                                <button style=" grid-row: 5; padding-left: 10%; padding-right: 10%;" class="ButtomUR ">Активировать PromoCode</button>
+                                <p style=" grid-row: 6;" class="mainColor SizeTextSmall">Получить бонусы можно из (промокодов и акция)</p>
+                            </div>
+                        </a>
 
-    <div id='setings' class="BlockSecond" style="display: none;">
-      <div class="GBlock">
-        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)"  style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC" >
-          <abbr class = 'CB' hidden>#040404</abbr>
-          <div class="gridBV">
-            <span style="grid-row: 1; text-align: center; ;"  class="mainColor SizeTextMidle">данные</span> 
-          
-            <div class="MargFor" style="grid-row: 2;">
-              <label for="exampleInputEmail1">Имя</label>
-              <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[1]}}" disabled>
-            </div>
 
-            <div class="MargFor" style="grid-row: 3;">
-              <label for="exampleInputEmail1">Фамилия</label>
-              <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[2]}}" disabled>
-            </div>
+                    </div>
+                </div>
 
-            <div class="MargFor" style="grid-row: 4;">
-              <label for="exampleInputEmail1">Email</label>
-              <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[5]}}" disabled>
-            </div>
+                <div id='setings' class="BlockSecond" style="display: none;">
+                    <div class="GBlock">
+                        <a href="javascript:void(0)" onmouseover="Cl(this)" onmouseout="Ol(this)" style="cursor: default; text-decoration: none; background:rgb(41, 41, 41);" class="CC">
+                            <abbr class='CB' hidden>#040404</abbr>
+                            <div class="gridBV">
+                                <span style="grid-row: 1; text-align: center; ;" class="mainColor SizeTextMidle">данные</span>
 
-          </div>
-        </a>
-  
-        <button onclick="BR()" class="ButtomUR">выйти</button>
-      </div>
+                                <div class="MargFor" style="grid-row: 2;">
+                                    <label for="exampleInputEmail1">Имя</label>
+                                    <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[1]}}" disabled>
+                                </div>
 
-      <!-- 
+                                <div class="MargFor" style="grid-row: 3;">
+                                    <label for="exampleInputEmail1">Фамилия</label>
+                                    <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[2]}}" disabled>
+                                </div>
+
+                                <div class="MargFor" style="grid-row: 4;">
+                                    <label for="exampleInputEmail1">Email</label>
+                                    <input type="text" class="form-control-settings" id="LMLogin" aria-describedby="emailHelp" value="{{data[5]}}" disabled>
+                                </div>
+
+                            </div>
+                        </a>
+
+                        <button onclick="BR()" class="ButtomUR">выйти</button>
+                    </div>
+
+                    <!-- 
       <div>
         <p style="text-align: center;"><a style="width: 78%; text-decoration: none;" class="SizeTextMidle uiTab2">показать ещё 11 игр</a></p>
       </div>
        -->
 
-    </div>
+                </div>
 
-    
-  </div>
-  <script>
-    a = document.getElementById('StackWin').innerHTML  // 2
-    b = document.getElementById('AllWin').innerHTML  //122
-    
-    var c = (100/(b / 6)) * a
-    x = c.toFixed(2);
-    document.getElementById('PWin').innerHTML = x + '%'
-  </script>
-  <!-- Тут писать код -->
-<style>
-  
-  .bActive{
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 2px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .75rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-    color: #ffffff;
-    background: #000000;
-    border-color: #ffffff;
-  }
-</style>
-<script>
-  function Ope(data){
-    if (data == 'm'){
-      // ButtomUR bActive
-      document.getElementById('money').style.display = 'block';
-      document.getElementById('stats').style.display = 'none';
-      document.getElementById('setings').style.display = 'none';
 
-      document.getElementById('mb').classList.add("bActive");
-      document.getElementById('sb').classList.remove("bActive");
-      document.getElementById('ssb').classList.remove("bActive");
-    }
-    else if(data == 'set'){
-      document.getElementById('money').style.display = 'none';
-      document.getElementById('stats').style.display = 'none';
-      document.getElementById('setings').style.display = 'block';
+            </div>
+            <script>
+                a = document.getElementById('StackWin').innerHTML // 2
+                b = document.getElementById('AllWin').innerHTML //122
 
-      document.getElementById('ssb').classList.add("bActive");
-      document.getElementById('mb').classList.remove("bActive");
-      document.getElementById('sb').classList.remove("bActive");
-    }
-    else{
-      document.getElementById('money').style.display = 'none';
-      document.getElementById('stats').style.display = 'block';
-      document.getElementById('setings').style.display = 'none';
+                var c = (100 / (b / 6)) * a
+                x = c.toFixed(2);
+                document.getElementById('PWin').innerHTML = x + '%'
+            </script>
+            <!-- Тут писать код -->
+            <style>
+                .bActive {
+                    display: inline-block;
+                    font-weight: 400;
+                    text-align: center;
+                    vertical-align: middle;
+                    -webkit-user-select: none;
+                    -moz-user-select: none;
+                    -ms-user-select: none;
+                    user-select: none;
+                    background-color: transparent;
+                    border: 2px solid transparent;
+                    padding: .375rem .75rem;
+                    font-size: 1rem;
+                    line-height: 1.5;
+                    border-radius: .75rem;
+                    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+                    color: #ffffff;
+                    background: #000000;
+                    border-color: #ffffff;
+                }
+            </style>
+            <script>
+                function Ope(data) {
+                    if (data == 'm') {
+                        // ButtomUR bActive
+                        document.getElementById('money').style.display = 'block';
+                        document.getElementById('stats').style.display = 'none';
+                        document.getElementById('setings').style.display = 'none';
 
-      document.getElementById('mb').classList.remove("bActive");
-      document.getElementById('ssb').classList.remove("bActive");
-      document.getElementById('sb').classList.add("bActive");
-    }
-  }
-</script>
+                        document.getElementById('mb').classList.add("bActive");
+                        document.getElementById('sb').classList.remove("bActive");
+                        document.getElementById('ssb').classList.remove("bActive");
+                    } else if (data == 'set') {
+                        document.getElementById('money').style.display = 'none';
+                        document.getElementById('stats').style.display = 'none';
+                        document.getElementById('setings').style.display = 'block';
+
+                        document.getElementById('ssb').classList.add("bActive");
+                        document.getElementById('mb').classList.remove("bActive");
+                        document.getElementById('sb').classList.remove("bActive");
+                    } else {
+                        document.getElementById('money').style.display = 'none';
+                        document.getElementById('stats').style.display = 'block';
+                        document.getElementById('setings').style.display = 'none';
+
+                        document.getElementById('mb').classList.remove("bActive");
+                        document.getElementById('ssb').classList.remove("bActive");
+                        document.getElementById('sb').classList.add("bActive");
+                    }
+                }
+            </script>
+        </body>
+
+
+    </main>
+
+
 </body>
 
-
-</main>
-
-
-</body></html>
+</html>
 
 
 {% endblock %}
