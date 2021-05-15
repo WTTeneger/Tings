@@ -1,4 +1,5 @@
 <html lang="ru">
+
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <meta charset="utf-8">
@@ -13,7 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-        <!-- Favicons -->
+    <!-- Favicons -->
     <link rel="apple-touch-icon" href="/docs/4.5/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/docs/4.5/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -25,78 +26,86 @@
 
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
-      }
-      .mainColor{
-        text-align: center;
-        color: #ffffffdb;
-        font-weight: bold;
-      }
-      .MutedText{
-        text-align: center;
-        color: #A8A8A8;
-        font-weight: bold;
-      }
-      .orangeC{
-        text-align: center;
-        color: #FFAD5B;
-        font-weight: bold;
-      }
-      .Gear{
-        transition: 1s; 
         
-      }
-      #Gears:hover .Gear{
-        transform: rotate(560deg);
-      }
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .mainColor {
+            text-align: center;
+            color: #ffffffdb;
+            font-weight: bold;
+        }
+        
+        .MutedText {
+            text-align: center;
+            color: #A8A8A8;
+            font-weight: bold;
+        }
+        
+        .orangeC {
+            text-align: center;
+            color: #FFAD5B;
+            font-weight: bold;
+        }
+        
+        .Gear {
+            transition: 1s;
+        }
+        
+        #Gears:hover .Gear {
+            transform: rotate(560deg);
+        }
     </style>
     <!-- Custom styles for this template -->
     <link href="cover.css" rel="stylesheet">
-  </head>
-  <body class="text-center" style="background: #3b3b3b;">
+</head>
+
+<body class="text-center" style="background: #3b3b3b;">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-  <header class="masthead mb-auto">
-    <div class="inner">
-     <a href="/" style="text-decoration: none;">
-      <h1 class="masthead-brand orangeC">TING</h1>
-      </a>
-    </div>
-  </header>
-  <div>
-    <div id='Gears' style="width: 100%; margin: 0 auto;">
-        <img class="Gear" style="margin-top: 26px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
-        <img class="Gear" style="margin: -10px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
-        <img class="Gear" style="margin-bottom: 26px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
-    </div>
-  </div>
-  <main role="main" class="inner cover">
-    <h1 class="cover-heading mainColor">Данная функция в разработке / на тех. обслуживание.</h1>
-    <p class="lead MutedText">Если нашли ошибку, нужна срочная помощь, есть идеи пишите в Telegram.</p>
-    <p class="lead">
-      <a href="/" class="btn btn-lg btn-secondary">Вернуться</a>
-    </p>
-  </main>
+        <header class="masthead mb-auto">
+            <div class="inner">
+                <a href="/" style="text-decoration: none;">
+                    <h1 class="masthead-brand orangeC">TING</h1>
+                </a>
+            </div>
+        </header>
+        <div>
+            <div id="Gears" style="width: 100%; margin: 0 auto;">
+                <img class="Gear" style="margin-top: 26px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
+                <img class="Gear" style="margin: -10px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
+                <img class="Gear" style="margin-bottom: 26px;" src="/static/Photo/gear.png" alt="" width="70" height="70">
+            </div>
+        </div>
+        <main role="main" class="inner cover">
+            <h1 class="cover-heading mainColor">Данная функция в разработке / на тех. обслуживание.</h1>
+            <p class="lead MutedText">Если нашли ошибку, нужна срочная помощь, есть идеи пишите в Telegram.</p>
+            <p class="lead">
+                <a href="/" class="btn btn-lg btn-secondary">Вернуться</a>
+            </p>
+        </main>
 
-  <footer class="mastfoot mt-auto">
-    <div><!-- <div style="position: fixed; bottom: 0; width: 100%;"> -->
-        <hr class="featurette-divider">
-        <p class="mainColor">Сайт сделал <a href="https://t.me/WT_Tini" target="blank" style="color: #FFAD5B; font-size: 130%; text-decoration: none;" class="CVFont orangeC">@WT_Tini</a></p>
-        <p class="mainColor">swintages@gmail.com</p>
+        <footer class="mastfoot mt-auto">
+            <div>
+                <!-- <div style="position: fixed; bottom: 0; width: 100%;"> -->
+                <hr class="featurette-divider">
+                <p class="mainColor">Сайт сделал <a href="https://t.me/WT_Tini" target="blank" style="color: #FFAD5B; font-size: 130%; text-decoration: none;" class="CVFont orangeC">@WT_Tini</a></p>
+                <p class="mainColor">swintages@gmail.com</p>
+            </div>
+        </footer>
     </div>
-  </footer>
-</div>
 
 
-</body></html>
+</body>
+
+</html>

@@ -449,7 +449,6 @@ class user_():
     
     def GetUserAuth(self):
         userData = user_.GetUserDate(self)
-        print(userData)
         
         return(userData['auth'])
     
@@ -500,28 +499,22 @@ class CACHE():
         user_cashe = ''
         if not self.cookies.get('TING'):
             user_cashe = CACHE.Generate(str(self.remote_addr))
-            print('Генерация')
             # hash = (GENERCASH(str(self.remote_addr)))
         else:
             user_cashe = self.cookies.get('TING')  
-            print('Есть')
             # hash = self.cookies.get('TING')    
-        # print(user_cashe)
         return(user_cashe)
 
 
 def GetQuestiions(Type, questions):
     questions_c = questions['game']['questions_id']
-    print(Type, questions, questions_c)
     texts = f'SELECT * FROM Questions where id NOT IN ({questions_c}) AND fromTest = {Type} ORDER BY rand() LIMIT 1'
-    print(texts)
     
     mass = DB.GET(texts)
     T_a = ''
     for a in mass:
         T_a += str(a[0])+','
     T_a = T_a[:-1]
-    print(T_a)
     
     questions['game']['questions_id'] =  str(questions['game']['questions_id']) + ',' + str(T_a)
     return(mass)
@@ -560,7 +553,6 @@ def tingAPI_account(method):
                 rt['status'] = True
                 
                 codeE, ids = DB.Check_user_in_db(None, request.form['login'], request.form['password'])
-                print(codeE, ids)
                 
                 if codeE == 1:
                     rt['ErrorL'] = True
@@ -584,7 +576,6 @@ def tingAPI_account(method):
             code = '#'+str(request.form['code'])
             codeEmail = user_.GetUserDate(user_cashe)['codeEmail']
             
-            print(code, codeEmail)
             
             error =  {
                 'status':200,
@@ -593,7 +584,6 @@ def tingAPI_account(method):
             
             if(str(code) == str(codeEmail)):
                 error['error'] = False       
-                print(user_.GetUserDate(user_cashe))
                 DB.POST(f'UPDATE users set mailCheck = 1 where id = {user_.GetUserDate(user_cashe)["id_in_db"]}')
                 user_.login(user_cashe,  user_.GetUserDate(user_cashe)['id_in_db'] )
             else:
@@ -604,9 +594,7 @@ def tingAPI_account(method):
         elif(method == 'create'):
             req = request.form
             text = (f'select login, email from users where login = "{req["login"]}" or email = "{req["email"]}"')
-            print(req)
             mails = DB.GET(text)
-            print('create', req,'\n',mails,'\n')
             error = {'login':None,
                      'mail':None,
                      'status':200}
@@ -627,7 +615,6 @@ def tingAPI_account(method):
             except:
                 pass
             
-            print(error)
             if(error['login'] == None and error['mail'] == None):
                 a = user_.GetUserDate(user_cashe)
                 
@@ -635,13 +622,10 @@ def tingAPI_account(method):
                 
                 
                 
-                print(req)
-                print(datetime.datetime.now())
                 te = (f"""INSERT INTO users VALUES  
                         (Null, '{req['name']}', '{req['lastName']}', '{req['login']}', '{req['password']}', '{req['year']}-{req['mouth']}-{req['day']}', '{req['sex']}', '{req['email']}', 0, Null, 0, 'user', '{datetime.datetime.now()}')    
                         
                         """)
-                print(te)
                 DB.POST(te) # Создание аккаунта с флагом (не подтвержден)
                 idq = DB.GET('select max(id) from users')[0][0]
                 a['id_in_db'] = idq
@@ -680,7 +664,6 @@ def tingAPI_Game(method):
     
     if(RZ <= 10 and RZ >= -5):
         if(method == 'StartNewGame'):
-            print(userdata)
 
             if(userdata['game']['code_in_game'] == None and userdata['game']['status'] == False):
                 # Проверка монет
@@ -698,12 +681,10 @@ def tingAPI_Game(method):
                 userdata['game']['code_in_game'] = gameCode
                 userdata['game']['typeGame'] = request.form['TypeGame']
                 userdata = user_.GetUserDate(user_cashe)
-                print(userdata)
                 userdata['game']['questions_id'] = 0
                 userdata['game']['count_true'] = 0
                 
                 daq = DB.GET(f'SELECT toWin, мultiplier FROM tests where id = {request.form["TypeGame"]}')[0]
-                print('daqdaq', daq)
                 userdata['game']['to_win'] = daq[0]
                 userdata['game']['мultiplier'] = daq[1]
                 userdata['game']['status'] = False
@@ -729,11 +710,8 @@ def tingAPI_Game(method):
                     'method': method
                     }
             if(request.form['code_in_game'] == userdata['game']['code_in_game']):
-                print('Коды верные')
-                print(request.form['otv'] , userdata['game']['true_otv'])
                 
                 if(request.form['otv'] == userdata['game']['true_otv']):
-                    print('Верно')   
                     userdata['game']['count_true'] =  userdata['game']['count_true'] + 1 
                     # 
                     # 
@@ -744,11 +722,9 @@ def tingAPI_Game(method):
                     # 
                     if(userdata['game']['to_win'] <= userdata['game']['count_true']):
                         bonus = 0 
-                        print('Win')
                         c = DB.GET(f'SELECT countVictor, {userdata["game"]["typeGame"]+"_test_victory"}, {userdata["game"]["typeGame"]+"_test_now"} FROM userStats where fromUser = {userdata["id_in_db"]}')[0]
                         if(c[2] >= 5):
                             DB.POST(f'UPDATE userStats set countVictor = {c[0]+1}, {userdata["game"]["typeGame"]+"_test_victory"} = {c[1]+1}, {userdata["game"]["typeGame"]+"_test_now"} = 0 where fromUser = {userdata["id_in_db"]}')
-                            print('Дать приз и победу')
                             bonus = 50
                         else:
                             DB.POST(f'UPDATE userStats set countVictor = {c[0]+1}, {userdata["game"]["typeGame"]+"_test_victory"} = {c[1]+1}, {userdata["game"]["typeGame"]+"_test_now"} = {c[2]+1} where fromUser = {userdata["id_in_db"]}')
@@ -760,9 +736,8 @@ def tingAPI_Game(method):
                         returnValue['status'] = 202
                 else:
                     returnValue['status'] = 204
-                    print('Не верно')
                     c = DB.GET(f'SELECT countLoss, {userdata["game"]["typeGame"]+"_test_loss"} FROM userStats where fromUser = {userdata["id_in_db"]}')[0]
-                    DB.POST(f'UPDATE userStats set countLoss ={c[0]+1},{userdata["game"]["typeGame"]+"_test_loss"} = {c[1]+1} where fromUser = {userdata["id_in_db"]}')
+                    DB.POST(f'UPDATE userStats set countLoss ={c[0]+1},{userdata["game"]["typeGame"]+"_test_loss"} = {c[1]+1}, {userdata["game"]["typeGame"]+"_test_now"} = 0 where fromUser = {userdata["id_in_db"]}')
                         
                     userdata['game']['count_true'] = 0
 
@@ -779,12 +754,10 @@ def tingAPI_Game(method):
                     'method': method
                     }
             if(request.form['code_in_game'] == userdata['game']['code_in_game']):
-                print('Коды верные')
                 a = GetQuestiions(userdata['game']['typeGame'], userdata)[0]
                 userdata['game']['true_otv'] = a[6]
                 Questions_Var = [a[2],a[3],a[4],a[5]]
-                # Questions_Var = sorted(Questions_Var, key=lambda A: random.random()) #без него всегда верна первая
-                print(Questions_Var)
+                Questions_Var = sorted(Questions_Var, key=lambda A: random.random()) #без него всегда верна первая/
                 returnValue['data'] = {'questions_Var': Questions_Var,
                                        'question': a[1],
                                        'count_true': userdata['game']['count_true'],
@@ -796,7 +769,15 @@ def tingAPI_Game(method):
                 returnValue['status'] = 208
                 return(returnValue)
 
-    
+        elif(method =='end_game'):
+            returnValue = {
+                    'status': 200,
+                    'method': method,
+                    }
+            if(request.form['code_in_game'] == userdata['game']['code_in_game']):
+                returnValue['true'] = userdata['game']['true_otv']
+                print(returnValue)
+        
     else:
         returnValue['status'] = 406
 
@@ -817,7 +798,6 @@ def game_start():
         return(res)
     else:
         if(userdata['game']['status'] == False):
-            print('ud',userdata)
             Questions_Var = ['0', '1', '2', '3']
             userdata['game']['status'] = True
         else:
@@ -843,10 +823,8 @@ def stats():
         res.set_cookie('TING', f'{user_cashe}') 
     else:
         tests = DB.GET('select * from tests')
-        print(tests,lg)
         idUss = user_.GetUserDate(user_cashe)
         idUs = idUss['id_in_db']
-        print(idUs)
         data = DB.GET(f'select * from users where id = {idUs}')[0]
         stats = DB.GET(f'select * from userStats where fromUser = {idUs}')[0]
         # el = [[stats[2], stats[3]]] Общая статистика
@@ -879,6 +857,37 @@ def about_us():
     lg = user_.GetUserAuth(user_cashe)
     
     return render_template('/about.html', data=data, login = lg)
+
+@application.route('/privacy_policy')
+def privacy_policy():
+    user_cashe = CACHE.Check(request)
+    lg = user_.GetUserAuth(user_cashe)
+    res = ''
+    if lg == False:
+        res = make_response(render_template('privacy-policy.html'))
+        res.set_cookie('TING', f'{user_cashe}') 
+    else:
+        tests = DB.GET('select * from tests')
+        idUss = user_.GetUserDate(user_cashe)
+        idUs = idUss['id_in_db']
+        data = DB.GET(f'select * from users where id = {idUs}')
+        stats = DB.GET(f'select * from userStats where fromUser = {idUs}')
+        try:     
+            datad = data[0]
+            statsd = stats[0]
+            idUss['game']['code_in_game'] = None
+            idUss['game']['status'] = False
+            res = make_response(render_template('privacy-policy.html', data=datad, login = lg, stats = statsd, tests=tests, information = idUss['information']))
+            idUss['information'] = None
+            res.set_cookie('TING', f'{user_cashe}') 
+        except:
+            user_.GetUserDate(user_cashe)['auth'] = False
+            res = redirect('/')
+
+    return (res)
+
+
+
 
 @application.route('/InDeveloper')
 def InDeveloper():
@@ -938,31 +947,24 @@ def main():
     user_cashe = CACHE.Check(request)
     lg = user_.GetUserAuth(user_cashe)
     res = ''
-    print('LGG',lg)
     if lg == False:
         res = make_response(redirect('/'))
         res.set_cookie('TING', f'{user_cashe}') 
     else:
         tests = DB.GET('select * from tests')
-        print(tests)
         idUss = user_.GetUserDate(user_cashe)
         idUs = idUss['id_in_db']
-        print(idUs)
         data = DB.GET(f'select * from users where id = {idUs}')
         stats = DB.GET(f'select * from userStats where fromUser = {idUs}')
         try:     
             datad = data[0]
             statsd = stats[0]
-            print(datad, statsd)
-            print(lg)
             idUss['game']['code_in_game'] = None
             idUss['game']['status'] = False
             res = make_response(render_template('index.html', data=datad, login = lg, stats = statsd, tests=tests, information = idUss['information']))
             idUss['information'] = None
-            print('das')
             res.set_cookie('TING', f'{user_cashe}') 
         except:
-            print('exp')
             user_.GetUserDate(user_cashe)['auth'] = False
             res = redirect('/')
 

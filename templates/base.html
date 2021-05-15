@@ -206,11 +206,13 @@
         }
         
         .tt {
+            position: inherit;
             text-decoration: none;
             padding-bottom: .0rem!important;
         }
         
         .tt:hover {
+            position: inherit;
             /*какие-то свойства*/
             -webkit-transition: all 0.05s ease-in;
             /*для браузеров с webkit*/
@@ -313,7 +315,11 @@
         }
         
         .IconMain:hover {
-            transform: scale(2 .5);
+            transform: scale(2.5);
+        }
+        
+        .d-none {
+            margin-bottom: 3px;
         }
     </style>
 
@@ -348,7 +354,7 @@
             <a id='IconA' class="py-2" href="/" aria-label="Product">
                 <img class="IconMain" src="/static/Photo/TingICons.png" alt="" width="24" height="24">
             </a>
-            <a id='m1' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/main">Главная</a>
+            <a id='m1' style="text-decoration: none; " class="mainColor py-2 d-none d-md-inline-block tt" href="/main">Главная</a>
             <a id='m2' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/news">Новости</a>
             <a id='m3' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="video">Видео</a>
             <a id='m4' style="text-decoration: none;" class="mainColor py-2 d-none d-md-inline-block tt" href="/about">О нас</a>

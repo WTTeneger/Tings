@@ -29,6 +29,38 @@
                 code = 'None'
             }
             let datas;
+
+            function aqq() {
+                let urls = document.location.protocol + '//' + document.location.host + "/tingAPI/game/end_game";
+                let code = ''
+                try {
+                    code = localStorage.getItem('CodeGame')
+                } catch {
+                    code = 'None'
+                }
+                $.ajax({
+                    type: "POST",
+                    url: urls,
+
+                    data: {
+                        'code_in_game': code,
+                        'timeN': Date.now()
+                    },
+                    async: false,
+                    success: function(data) {
+                        console.log('return -- ', data);
+                        for (item of document.getElementsByName('VR')) {
+                            item.disabled = true;
+                            if (item.innerHTML != data['true']) {
+                                item.style = 'display:None;'
+                            }
+                        }
+                        document.getElementById('exit').style = 'display: block;'
+
+                    }
+                });
+            }
+
             $.ajax({
                 type: "POST",
                 url: urls,
@@ -48,8 +80,10 @@
                     //
                     else if (data['status'] == 204) {
                         console.log('Не верно');
+                        aqq()
                         localStorage.setItem('CodeGame', null)
-                        document.location.href = "/";
+                            //document.location.href = "/";
+
                     }
                     //
                     else if (data['status'] == 200) {
@@ -135,6 +169,14 @@
             <!--  -->
             {%endfor%}
         </div>
+    </div>
+    <style>
+        .sqwe {
+            margin: 10% auto;
+        }
+    </style>
+    <div style="text-align: center;">
+        <button class="InRegisterButton qweqwe sqwe" type="button" id='exit' onclick="document.location.href = '/'" style="display: none;">выйти</button>
     </div>
     <script>
         function setQuestions(question, q_v) {
