@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from flask import Flask, render_template, request, session, Response, make_response, redirect, jsonify, json
-
+from flask_cors import CORS
 import smtplib                                      # Импортируем библиотеку по работе с SMTP
 # Добавляем необходимые подклассы - MIME-типы
 from email.mime.multipart import MIMEMultipart      # Многокомпонентный объект
@@ -18,8 +18,9 @@ import string
 import random
 import threading
 
-application = Flask(__name__)
 
+application = Flask(__name__)
+CORS(application)
 data = ['да', '123', 'да', '123', 'да', '123', 'да', '123', 'да', '123', 'да', '123']
 
 AllClient = {}
@@ -191,7 +192,6 @@ def SendMessageCode(ToMail,  Code, name):
 
 
 
-
 @thread
 def SendMessageReloginPass(ToMail,  CodeMail, name):
     addr_from = "ting@ru-ting.ru"                # Адресат
@@ -351,8 +351,6 @@ def SendMessageReloginPass(ToMail,  CodeMail, name):
 
 
 
-
-
 def parse_arg_from_requests(el):
     el = (el.decode("utf-8"))
     el = el.split('&')
@@ -360,6 +358,7 @@ def parse_arg_from_requests(el):
     for a in el:
         es.append(a.split("=")[-1])
     return(es)
+
 
 def generate_Color_hex():
     """Генерирует цвет
@@ -371,6 +370,7 @@ def generate_Color_hex():
 def GenerateCodeGame():
     GameCode = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(8))
     return(GameCode)
+
 
 class DB():
     """Работа с Базой данных
@@ -418,6 +418,11 @@ class DB():
             error = 1
         return(error, ids)
 
+    
+    
+    def miles(self):
+        #В строке 17 см
+        print()
 class user_():
     """Работа с локальными данными пользователей"""
     
@@ -903,7 +908,6 @@ def auth():
     
     if request.method == "GET":
         lg = user_.GetUserAuth(user_cashe)
-        
         if lg:
             return redirect('/main')
         else:
@@ -983,4 +987,5 @@ def test():
 
 
 if __name__=="__main__":
-    application.run(debug=True, host='192.168.3.2',port='80')
+    # application.run(debug=True, host='192.168.3.2',port='80')
+    application.run(host='localhost', debug=False, threaded=True)
